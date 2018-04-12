@@ -16,13 +16,12 @@
 
         <div class="column is-3">
 
-          <h2 class="subtitle is-size-4">Filters</h2>
+          <h2 class="subtitle is-size-3">Filters</h2>
 
-          <input class="input" type="text" name="" value="">
-
+          <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="search product name">
           <br><br>
 
-          <p class="subtitle is-size-5">Orders</p>
+          <p class="title is-size-5">Orders</p>
           <ul>
             <li>Order #
               <multi-select
@@ -37,18 +36,18 @@
             <li>Job Name</li>
             <li>PO #</li>
           </ul>
-          <br>
+          <hr>
 
-          <p class="subtitle is-size-5">Quotes</p>
+          <p class="title is-size-5">Quotes</p>
           <ul>
             <li>Quote #</li>
             <li>Date Range</li>
             <li>Quote Status</li>
             <li>Job Name</li>
           </ul>
-          <br>
+          <hr>
 
-          <p class="subtitle is-size-5">My Lists</p>
+          <p class="title is-size-5">My Lists</p>
           <ul>
             <li>List Name
               <multi-select
@@ -67,26 +66,26 @@
             <!-- <li>Favorite</li> -->
             <!-- <li>Job Name</li> -->
           </ul>
-          <br>
+          <hr>
 
-          <p class="subtitle is-size-5">Job Board</p>
+          <p class="title is-size-5">Job Board</p>
           <ul>
             <li>Account</li>
             <!-- <li>Job Account</li>
             <li>Contract</li>
             <li>Store</li> -->
           </ul>
-          <br>
+          <hr>
 
-          <p class="subtitle is-size-5">Category</p>
+          <p class="title is-size-5">Category</p>
           <ul>
             <li>Category 1</li>
             <li>Category 2</li>
             <li>Category 3</li>
           </ul>
-          <br>
+          <hr>
 
-          <p class="subtitle is-size-5">Brand</p>
+          <p class="title is-size-5">Brand</p>
           <ul>
             <li>Brand 1</li>
             <li>Brand 2</li>
@@ -98,7 +97,7 @@
 
         <div class="column">
 
-          <h2 class="subtitle is-size-4">Results</h2>
+          <h2 class="title is-size-3">My Products</h2>
 
 
            <div class="columns is-multiline">
@@ -109,8 +108,8 @@
                <div class="product-list-item">
                  <div class="product-list-item-content">
                    <div class="is-horizontal-center">
-                     <figure class="image is-128x128">
-                       <img v-bind:src="item.image" alt="">
+                     <figure class="image is-128x128" style="overflow:hidden;">
+                       <img class="img" v-bind:src="item.image" alt="">
                      </figure>
                    </div>
                    <br>
@@ -147,32 +146,39 @@ export default {
       products: productData.products,
       quotes: quoteData.quotes,
 
-      fpListsShared: false,
+      fpSearchTerm: '',
       fpOrderIDs: [],
-      fpListIDs: []
+      fpListIDs: [],
+      fpListsShared: false
     }
   },
   computed: {
     filteredProducts: function () {
 
       var fp = this.products
-      // var lists = this.lists
+
+      if (this.fpSearchTerm) {
+        let searchTerm = this.fpSearchTerm
+        fp = _.filter(fp, function (product) {
+          return _.includes(product.name.toUpperCase(), searchTerm.toUpperCase())
+        })
+      }
+
 
       /* if (this.fpListsShared) {
         fp = _.filter(fp, function (o) { return o.lists['is-shared'] })
       } */
       if (this.fpListsShared) {
         let func = this.prodIsShared
-        fp = _.filter(fp, function (o) {
-          // console.log(func(o.code))
-          return func(o.code)
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
         })
       }
 
       if (this.fpOrderIDs.length) {
         let func = this.prodIsInOrderFilter
-        fp = _.filter(fp, function (o) {
-          return func(o.code)
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
         })
         /*
         var idArray = []
@@ -222,7 +228,7 @@ export default {
         }
       })
       // console.log('returning ' + listContainsAProductID)
-      console.log('prodIsShared: ' + prodID + ' returning ' + listContainsAProductID)
+      // console.log('prodIsShared: ' + prodID + ' returning ' + listContainsAProductID)
       return listContainsAProductID
     },
     onSelectLists (items, lastSelectItem) {
@@ -322,5 +328,11 @@ export default {
     max-height: 32px
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
-
+  .img
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translateX(-50%) translateY(-50%)
+    max-width: 100%
+    max-height: 100%
 </style>

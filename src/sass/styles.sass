@@ -1,0 +1,76 @@
+/* ====================================================
+    LITERAL VALUES
+   ==================================================== */
+// colors
+// ferguson overrides
+// $brand: #00446a
+
+/* ====================================================
+    TOKENIZE VALUES TO CALCULATED (Existing) VARIABLES
+   ==================================================== */
+// $primary: #1283da
+
+// Pull in utilities dependencies to override in-partial settings
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/functions"
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/initial-variables"
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/derived-variables"
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/mixins"
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/controls"
+
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/elements/form"
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/elements/table"
+@import "../../node_modules/@ferguson-enterprises/fds-css/sass/components/dropdown"
+/* ====================================================
+    PARTIAL OVERRIDES
+   ==================================================== */
+// buefy overrides
+$radio-active-background-color: $color-primary
+
+
+
+
+// keep the design system node package call before explicity css styles
+@import "../../node_modules/@ferguson-enterprises/fds-css/fds"
+// @import "../../node_modules/buefy/src/scss/buefy"
+/* ====================================================
+    EXPLICIT SYSTEM OVERRIDES
+   ==================================================== */
+.element
+  &.is-loading
+    position: relative
+    pointer-events: none
+    opacity: 0.5
+    &:after
+      @include loader
+      position: absolute
+      top: calc(50% - 2.5em)
+      left: calc(50% - 2.5em)
+      width: 5em
+      height: 5em
+      border-width: 0.25em
+
+
+
+
+.light-content
+  background: $light
+
+.has-bg-primary
+  background-color: $color-primary
+.has-bg-secondary
+  background-color: $color-secondary
+.has-bg-info
+  background-color: $color-info
+.has-bg-success
+  background-color: $color-success
+.has-bg-warning
+  background-color: $color-warning
+.has-bg-danger
+  background-color: $color-danger
+
+$navbar-background: $color-primary !default
+$navbar-item: $color-primary !default
+
+
+
+/*! This css makes use of Bulma as a foundation -  github.com/jgthms/bulma */

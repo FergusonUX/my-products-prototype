@@ -1,0 +1,14 @@
+{
+  "quotes": [
+    {
+      "quote-number": "B930695",
+      "date-created": 1523363520,
+      "date-expiration": 1544443200,
+      "job-name": "2\" 007LF",
+      "account": "502411",
+      "products-quoted": [
+        { "code": "WLF007M1QTK", "quantity": 1, "unit-price": 361.40 }
+      ]
+    }
+  ]
+}

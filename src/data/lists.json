@@ -1,0 +1,34 @@
+{
+  "lists": {
+    "tree": [
+      {
+        "name": "SAVED CARTS",
+        "type": "folder",
+        "is-shared": false,
+        "products": []
+      },
+      {
+        "name": "Johnson House Renovation 2",
+        "type": "list",
+        "is-shared": true,
+        "products": [
+          { "code": "C270210", "quantity": 1 }
+        ]
+      },
+      {
+        "name": "Johnson House Renovation",
+        "type": "list",
+        "is-shared": false,
+        "products": [
+          { "code": "C270229", "quantity": 1 }
+        ]
+      },
+      {
+        "name": "My List #1",
+        "type": "list",
+        "is-shared": true,
+        "products": []
+      }
+    ]
+  }
+}

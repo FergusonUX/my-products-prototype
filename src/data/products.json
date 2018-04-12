@@ -1,0 +1,137 @@
+{
+  "products": [
+    {
+      "name": "Gripper 1-1/2 in. Gripper Mechanical Plug",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=41869",
+      "code": "C270210",
+      "categories": "",
+      "brand": "Cherne"
+    },
+    {
+      "name": "Gripper 2 in. Gripper Mechanical Plug",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=25286",
+      "code": "C270229",
+      "categories": "",
+      "brand": "Cherne"
+    },
+    {
+      "name": "Water-Tite 6 ft. Shower Pan Liner in Grey",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3520467",
+      "code": "I83450",
+      "categories": "",
+      "brand": "IPS Corporation"
+    },
+    {
+      "name": "Gripper 2 in. Gripper Mechanical Plug",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3265400",
+      "code": "L10771FLK1",
+      "categories": "",
+      "brand": "Lenox"
+    },
+    {
+      "name": "2 in. Bronze Double Check Backflow Preventer Assembly",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=2980939",
+      "code": "WLF007M1QTK",
+      "categories": "",
+      "brand": "Watts"
+    },
+    {
+      "name": "2 in. No-Hub Cast Iron 45 Degree 1/8 Bend",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=17290",
+      "code": "NH4K",
+      "categories": "",
+      "brand": ""
+    },
+    {
+      "name": "2 in. No-Hub Stainless Steel Coupling",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=49972",
+      "code": "DNHCK",
+      "categories": "",
+      "brand": ""
+    },
+    {
+      "name": "4 in. No-Hub Stainless Steel Coupling",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=15790",
+      "code": "DNHCP",
+      "categories": "",
+      "brand": ""
+    },
+    {
+      "name": "2 in. Plated Adjustable Standard Clevis Hanger in Silver",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060378",
+      "code": "FNW7005Z0200",
+      "categories": "",
+      "brand": "FNW"
+    },
+    {
+      "name": "3 in. Plated Adjustable Standard Clevis Hanger in Silver",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060322",
+      "code": "FNW7005Z0300",
+      "categories": "",
+      "brand": "FNW"
+    },
+    {
+      "name": "4 in. Plated Adjustable Standard Clevis Hanger in Silver",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060369",
+      "code": "FNW7005Z0400",
+      "categories": "",
+      "brand": "FNW"
+    },
+    {
+      "name": "2 in. Zinc-Plated Riser Clamp",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060304",
+      "code": "FNW7022Z0200",
+      "categories": "",
+      "brand": "FNW"
+    },
+    {
+      "name": "4 in. No-Hub Cast Iron Straight 1/8 Bend",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098805",
+      "code": "TNH4P",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    },
+    {
+      "name": "2 in. No-Hub Cast Iron 1/4 Degree Bend",
+      "image": "https://www.ferguson.com/dar/default_STANDARD.png",
+      "code": "TNH9K",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    },
+    {
+      "name": "3 in. No-Hub Cast Iron 1/4 Degree Bend",
+      "image": "https://www.ferguson.com/dar/default_STANDARD.png",
+      "code": "TNH9M",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    },
+    {
+      "name": "3 x 3 x 2 in. No-Hub Cast Iron Sanitary Tee",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098922",
+      "code": "TNHSTMMK",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    },
+    {
+      "name": "4 x 4 x 2 in. No-Hub Cast Iron Sanitary Tee",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098465",
+      "code": "TNHSTPPK",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    },
+    {
+      "name": "4 x 4 x 2 in. No-Hub Reducing Cast Iron Wye",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098412",
+      "code": "TNHYPPK",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    },
+    {
+      "name": "2 in. x 10 ft. No-Hub Cast Iron Soil Pipe",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4582905",
+      "code": "TNHPK10",
+      "categories": "",
+      "brand": "Tyler Pipe"
+    }
+  ]
+}

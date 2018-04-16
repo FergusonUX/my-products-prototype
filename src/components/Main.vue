@@ -21,7 +21,7 @@
           <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="search product name">
           <br><br>
 
-          <p class="title is-size-5">Orders</p>
+          <p class="title is-size-5">Quotes &amp; Orders</p>
           <ul>
             <li>Order #
               <multi-select
@@ -29,6 +29,14 @@
                            :selected-options="fpOrderIDs"
                            placeholder="select order #"
                            @select="onSelectOrderID">
+              </multi-select>
+            </li><br>
+            <li>Quote #
+              <multi-select
+                           :options="quotes"
+                           :selected-options="fpQuoteIDs"
+                           placeholder="select quote #"
+                           @select="onSelectQuoteID">
               </multi-select>
             </li><br>
             <li>Job Name
@@ -47,19 +55,28 @@
                            @select="onSelectOrderPO">
               </multi-select>
             </li><br>
-            <li>Date Range</li>
+            <!-- <li>Start Date <br>
+              <flat-pickr class="input"
+                          v-model="fpOrderStartDate"
+                          :config="flatPickrConfig"
+                          @on-change="onSelectOrderStartDate"
+              >
+              <br>{{fpOrderStartDate}}
+              </flat-pickr>
+            </li><br>
+            <li>End Date <br>
+              <flat-pickr class="input"
+                          v-model="fpOrderEndDate"
+                          :config="flatPickrConfig"
+                          @on-change="onSelectOrderEndDate"
+              >
+              </flat-pickr>
+              <br>{{fpOrderEndDate}}
+            </li><br> -->
+
             <!-- <li>Order Status</li> -->
 
 
-          </ul>
-          <hr>
-
-          <p class="title is-size-5">Quotes</p>
-          <ul>
-            <li>Quote #</li>
-            <li>Date Range</li>
-            <li>Quote Status</li>
-            <li>Job Name</li>
           </ul>
           <hr>
 
@@ -147,11 +164,14 @@
 
 <script>
 import _ from 'lodash'
+import moment from 'moment'
 import { MultiSelect } from 'vue-search-select'
 import listData from '../data/lists.json'
 import orderData from '../data/orders.json'
 import productData from '../data/products.json'
 import quoteData from '../data/quotes.json'
+import FlatPickr from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
 
 export default {
   name: 'Main',
@@ -169,9 +189,19 @@ export default {
       fpOrderPONumbers: [],
 
       fpSearchTerm: '',
+
       fpOrderIDs: [],
+      fpQuoteIDs: [],
       fpListIDs: [],
-      fpListsShared: false
+
+      fpListsShared: false,
+
+      fpOrderStartDate: null,
+      fpOrderEndDate: null,
+
+      flatPickrConfig: {
+        dateFormat: 'm-d-Y'
+      }
     }
   },
   computed: {
@@ -186,10 +216,6 @@ export default {
         })
       }
 
-
-      /* if (this.fpListsShared) {
-        fp = _.filter(fp, function (o) { return o.lists['is-shared'] })
-      } */
       if (this.fpListsShared) {
         let func = this.prodIsShared
         fp = _.filter(fp, function (product) {
@@ -198,7 +224,14 @@ export default {
       }
 
       if (this.fpOrderIDs.length) {
-        let func = this.prodIsInOrderFilter
+        let func = this.prodIsInOrderIDFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
+      if (this.fpQuoteIDs.length) {
+        let func = this.prodIsInQuoteIDFilter
         fp = _.filter(fp, function (product) {
           return func(product.code)
         })
@@ -218,14 +251,53 @@ export default {
         })
       }
 
+      if (this.fpOrderStartDate) {
+        let func = this.prodIsInOrderAfterStartDate
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+      if (this.fpOrderEndDate) {
+        let func = this.prodIsInOrderBeforeEndDate
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
       return fp
     }
   },
   methods: {
-    prodIsInOrderFilter: function (prodID) {
+    prodIsInOrderAfterStartDate: function (prodID) {
+      var bool = true
+      console.log('prodIsInOrderAfterStartDate - checking against date value: ' + this.fpOrderStartDate)
+      let dateArr = this.fpOrderStartDate.split('-')
+      let dateVal = moment(dateArr[2] + '-' + dateArr[1] + '-' + dateArr[0])
+      console.log('setting this.fpOrderStartDate: ' + dateVal)
+      return bool
+    },
+    prodIsInOrderBeforeEndDate: function (prodID) {
+      var bool = true
+      console.log('prodIsInOrderBeforeEndDate - checking against date value: ' + this.fpOrderEndDate)
+      let dateArr = this.fpOrderEndDate.split('-')
+      let dateVal = moment(dateArr[2] + '-' + dateArr[1] + '-' + dateArr[0])
+      console.log('setting this.fpOrderEndDate: ' + dateVal)
+      return bool
+    },
+    prodIsInOrderIDFilter: function (prodID) {
       var bool = false
       _.forEach(this.fpOrderIDs, function (order) {
         if (_.includes(_.map(order['products-ordered'], 'code'), prodID)) {
+          // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
+          bool = true
+        }
+      })
+      return bool
+    },
+    prodIsInQuoteIDFilter: function (prodID) {
+      var bool = false
+      _.forEach(this.fpQuoteIDs, function (order) {
+        if (_.includes(_.map(order['products-quoted'], 'code'), prodID)) {
           // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
           bool = true
         }
@@ -299,6 +371,9 @@ export default {
     onSelectOrderID (items, lastSelectItem) {
       this.fpOrderIDs = items
     },
+    onSelectQuoteID (items, lastSelectItem) {
+      this.fpQuoteIDs = items
+    },
     onSelectOrderJob (items, lastSelectItem) {
       this.fpOrderJobNames = items
       // console.log('fpOrderJobNames: ' + JSON.stringify(this.fpOrderJobNames))
@@ -306,10 +381,26 @@ export default {
     },
     onSelectOrderPO (items, lastSelectItem) {
       this.fpOrderPONumbers = items
+    },
+    onSelectOrderStartDate (selectedDates, dateStr, instance) {
+      // console.log('Date change hook was called', dateStr)
+      /* if (dateStr) {
+        let dateArr = dateStr.split('-')
+        this.fpOrderStartDate = moment(dateArr[2] + '-' + dateArr[1] + '-' + dateArr[0])
+        // console.log('setting this.fpOrderStartDate: ' + this.fpOrderStartDateVal)
+      } */
+    },
+    onSelectOrderEndDate (selectedDates, dateStr, instance) {
+      /* if (dateStr) {
+        let dateArr = dateStr.split('-')
+        this.fpOrderEndDate = moment(dateArr[2] + '-' + dateArr[1] + '-' + dateArr[0])
+        // console.log('setting this.fpOrderStartDate: ' + this.fpOrderEndDateVal)
+      } */
     }
   },
   components: {
-    MultiSelect
+    MultiSelect,
+    FlatPickr
   },
   mounted: function () {
     console.log('Main.vue, mounted: Build Filters...')
@@ -318,6 +409,12 @@ export default {
     for (let order in this.orders) {
       this.orders[order].value = this.orders[order]['order-number']
       this.orders[order].text = this.orders[order]['order-number']
+    }
+
+    // modify quotes object
+    for (let quote in this.quotes) {
+      this.quotes[quote].value = this.quotes[quote]['quote-number']
+      this.quotes[quote].text = this.quotes[quote]['quote-number']
     }
 
     // modify lists object

@@ -39,10 +39,18 @@
                            @select="onSelectOrderJob">
               </multi-select>
             </li><br>
+            <li>PO #
+              <multi-select
+                           :options="poNumbers"
+                           :selected-options="fpOrderPONumbers"
+                           placeholder="select PO #"
+                           @select="onSelectOrderPO">
+              </multi-select>
+            </li><br>
             <li>Date Range</li>
             <!-- <li>Order Status</li> -->
 
-            <li>PO #</li>
+
           </ul>
           <hr>
 
@@ -157,6 +165,9 @@ export default {
       jobNames: [],
       fpOrderJobNames: [],
 
+      poNumbers: [],
+      fpOrderPONumbers: [],
+
       fpSearchTerm: '',
       fpOrderIDs: [],
       fpListIDs: [],
@@ -200,6 +211,13 @@ export default {
         })
       }
 
+      if (this.fpOrderPONumbers.length) {
+        let func = this.prodIsInOrderPOFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
       return fp
     }
   },
@@ -236,6 +254,28 @@ export default {
       })
       return bool
     },
+    prodIsInOrderPOFilter: function (prodID) {
+      var bool = false
+      var ordersThatIncludeFilteredPO = []
+      var poNumbers = this.fpOrderPONumbers
+      _.forEach(this.orders, function (order) {
+        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobNames, 'value'), order['job-name']))
+        if (_.includes(_.map(poNumbers, 'value'), order['purchase-order-number'])) {
+          ordersThatIncludeFilteredPO.push(order)
+        }
+      })
+      // console.log(ordersThatIncludeFilteredJob.length)
+      _.forEach(ordersThatIncludeFilteredPO, function (order) {
+        // console.log('order[\'products-ordered\']: ' + order['products-ordered'])
+        // loop through an array of orders that include one of the selected job
+        // and filter products no in the order
+        if (_.includes(_.map(order['products-ordered'], 'code'), prodID)) {
+          // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
+          bool = true
+        }
+      })
+      return bool
+    },
     prodIsShared: function (prodID) {
       // console.log('prodIsShared: ' + prodID)
       var listContainsAProductID = false
@@ -255,16 +295,17 @@ export default {
     },
     onSelectLists (items, lastSelectItem) {
       this.fpListIDs = items
-      // this.lastSelectedOrderID = lastSelectItem
     },
     onSelectOrderID (items, lastSelectItem) {
       this.fpOrderIDs = items
-      // this.lastSelectedOrderID = lastSelectItem
     },
     onSelectOrderJob (items, lastSelectItem) {
       this.fpOrderJobNames = items
       // console.log('fpOrderJobNames: ' + JSON.stringify(this.fpOrderJobNames))
       // this.lastSelectedOrderID = lastSelectItem
+    },
+    onSelectOrderPO (items, lastSelectItem) {
+      this.fpOrderPONumbers = items
     }
   },
   components: {
@@ -301,6 +342,10 @@ export default {
       if (this.orders[order]['job-name'] && _.indexOf(this.jobNames, this.orders[order]['job-name']) === -1) {
         // console.log('yeah! ' + this.orders[order]['job-name'])
         this.jobNames.push({ text: this.orders[order]['job-name'], value: this.orders[order]['job-name'] })
+      }
+
+      if (this.orders[order]['purchase-order-number'] && _.indexOf(this.poNumbers, this.orders[order]['purchase-order-number']) === -1) {
+        this.poNumbers.push({ text: this.orders[order]['purchase-order-number'], value: this.orders[order]['purchase-order-number'] })
       }
     }
 

@@ -15,115 +15,164 @@
       <div class="columns">
 
         <div class="column is-3">
-
           <h2 class="subtitle is-size-3">Filters</h2>
-
           <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="search product name">
-          <br><br>
+          <br><br><br>
 
-          <p class="title is-size-5">Quotes &amp; Orders</p>
-          <ul>
-            <li>Order #
-              <multi-select
-                           :options="orders"
-                           :selected-options="fpOrderIDs"
-                           placeholder="select order #"
-                           @select="onSelectOrderID">
-              </multi-select>
-            </li><br>
-            <li>Quote #
-              <multi-select
-                           :options="quotes"
-                           :selected-options="fpQuoteIDs"
-                           placeholder="select quote #"
-                           @select="onSelectQuoteID">
-              </multi-select>
-            </li><br>
-            <li>Job Name
-              <multi-select
-                           :options="jobNames"
-                           :selected-options="fpOrderJobNames"
-                           placeholder="select job"
-                           @select="onSelectOrderJob">
-              </multi-select>
-            </li><br>
-            <li>PO #
-              <multi-select
-                           :options="poNumbers"
-                           :selected-options="fpOrderPONumbers"
-                           placeholder="select PO #"
-                           @select="onSelectOrderPO">
-              </multi-select>
-            </li><br>
-            <!-- <li>Start Date <br>
-              <flat-pickr class="input"
-                          v-model="fpOrderStartDate"
-                          :config="flatPickrConfig"
-                          @on-change="onSelectOrderStartDate"
-              >
-              <br>{{fpOrderStartDate}}
-              </flat-pickr>
-            </li><br>
-            <li>End Date <br>
-              <flat-pickr class="input"
-                          v-model="fpOrderEndDate"
-                          :config="flatPickrConfig"
-                          @on-change="onSelectOrderEndDate"
-              >
-              </flat-pickr>
-              <br>{{fpOrderEndDate}}
-            </li><br> -->
+          <b-collapse class="panel" :open.sync="collapseSectionOneIsOpen" animation="fade">
+            <div slot="trigger">
+              <p class="title is-size-5">
+                <span>Quotes &amp; Orders</span>
+                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                  <span v-if="collapseSectionOneIsOpen">-</span>
+                  <span v-else>+</span>
+                </span>
+              </p>
+            </div>
+            <br>
+            <ul>
+              <li>Order #
+                <multi-select
+                             :options="orders"
+                             :selected-options="fpOrderIDs"
+                             placeholder="select order #"
+                             @select="onSelectOrderID">
+                </multi-select>
+              </li><br>
+              <li>Quote #
+                <multi-select
+                             :options="quotes"
+                             :selected-options="fpQuoteIDs"
+                             placeholder="select quote #"
+                             @select="onSelectQuoteID">
+                </multi-select>
+              </li><br>
+              <li>Job Name
+                <multi-select
+                             :options="jobs"
+                             :selected-options="fpJobs"
+                             placeholder="select job"
+                             @select="onSelectJob">
+                </multi-select>
+              </li><br>
+              <li>Account
+                <multi-select
+                             :options="accounts"
+                             :selected-options="fpAccounts"
+                             placeholder="select job"
+                             @select="onSelectAccount">
+                </multi-select>
+              </li><br>
+              <li>PO #
+                <multi-select
+                             :options="pos"
+                             :selected-options="fpPOs"
+                             placeholder="select PO #"
+                             @select="onSelectPO">
+                </multi-select>
+              </li><br>
+              <!-- <li>Start Date <br>
+                <flat-pickr class="input"
+                            v-model="fpOrderStartDate"
+                            :config="flatPickrConfig"
+                            @on-change="onSelectOrderStartDate"
+                >
+                <br>{{fpOrderStartDate}}
+                </flat-pickr>
+              </li><br>
+              <li>End Date <br>
+                <flat-pickr class="input"
+                            v-model="fpOrderEndDate"
+                            :config="flatPickrConfig"
+                            @on-change="onSelectOrderEndDate"
+                >
+                </flat-pickr>
+                <br>{{fpOrderEndDate}}
+              </li><br> -->
 
-            <!-- <li>Order Status</li> -->
+              <!-- <li>Order Status</li> -->
+            </ul>
+          </b-collapse>
 
-
-          </ul>
           <hr>
 
-          <p class="title is-size-5">My Lists</p>
-          <ul>
-            <li>List Name
-              <multi-select
-                           :options="lists"
-                           :selected-options="fpListIDs"
-                           placeholder="select list"
-                           @select="onSelectLists">
-              </multi-select>
-            </li><br>
-            <li>
-              <label class="checkbox">
-                <input type="checkbox" v-model="fpListsShared">
-                  &nbsp; Shared
-              </label>
-            </li>
-            <!-- <li>Favorite</li> -->
-            <!-- <li>Job Name</li> -->
-          </ul>
+          <b-collapse class="panel" :open.sync="collapseSectionTwoIsOpen" animation="fade">
+            <div slot="trigger">
+              <p class="title is-size-5">
+                My Lists
+                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                  <span v-if="collapseSectionTwoIsOpen">-</span>
+                  <span v-else>+</span>
+                </span>
+              </p>
+            </div>
+            <br>
+            <ul>
+              <li>List Name
+                <multi-select
+                             :options="lists"
+                             :selected-options="fpListIDs"
+                             placeholder="select list"
+                             @select="onSelectListID">
+                </multi-select>
+              </li><br>
+              <li>
+                <label class="checkbox">
+                  <input type="checkbox" v-model="fpListsShared">
+                    &nbsp; Shared
+                </label>
+              </li>
+              <!-- <li>Favorite</li> -->
+              <!-- <li>Job Name</li> -->
+            </ul>
+          </b-collapse>
+
           <hr>
 
-          <p class="title is-size-5">Job Board</p>
-          <ul>
-            <li>Account</li>
-            <!-- <li>Job Account</li>
-            <li>Contract</li>
-            <li>Store</li> -->
-          </ul>
+          <b-collapse class="panel" :open.sync="collapseSectionThreeIsOpen" animation="fade">
+            <div slot="trigger">
+              <p class="title is-size-5">
+                Category
+                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                  <span v-if="collapseSectionThreeIsOpen">-</span>
+                  <span v-else>+</span>
+                </span>
+              </p>
+            </div>
+            <br>
+            <ul>
+              <li v-for="cat in categories" v-bind:key="cat.name">
+                <label class="checkbox">
+                  <input type="checkbox" v-model="fpCategories" :value="cat.name">
+                    &nbsp; {{cat.name}} ({{cat.count}})
+                </label>
+              </li>
+            </ul>
+          </b-collapse>
+
           <hr>
 
-          <p class="title is-size-5">Category</p>
-          <ul>
-            <li>Category 1</li>
-            <li>Category 2</li>
-            <li>Category 3</li>
-          </ul>
-          <hr>
-
-          <p class="title is-size-5">Brand</p>
-          <ul>
-            <li>Brand 1</li>
-            <li>Brand 2</li>
-            <li>Brand 3</li>
-          </ul>
+          <b-collapse class="panel" :open.sync="collapseSectionFourIsOpen" animation="fade">
+            <div slot="trigger">
+              <p class="title is-size-5">
+                Brand
+                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                  <span v-if="collapseSectionThreeIsOpen">-</span>
+                  <span v-else>+</span>
+                </span>
+              </p>
+            </div>
+            <br>
+            <ul>
+              <li v-for="brand in brands" v-bind:key="brand.name">
+                <label class="checkbox">
+                  <input type="checkbox" v-model="fpBrands" :value="brand.name">
+                    &nbsp; {{brand.name}} ({{brand.count}})
+                </label>
+              </li>
+            </ul>
+          </b-collapse>
+        
           <br>
 
         </div>
@@ -148,6 +197,16 @@
                    <br>
                    <p class="has-text-weight-bold product-list-item-title">{{item.name}}</p>
                    <p class="is-size-7">{{item.code}}</p>
+
+                   <div v-if="fpListIDs.length">
+                     <br>
+                     <p class="is-size-7">
+                       <span>Found in</span>
+                       <span class=""><a href="#">{{lastSelectedListItem.value}}</a></span>
+                       <span v-if="productListFilterMessage(item.code).length > 1">and {{productListFilterMessage(item.code).length - 1}} other list</span><span v-if="productListFilterMessage(item.code).length > 2">(s)</span>
+                     </p>
+                   </div>
+
                  </div>
 
                </div>
@@ -172,29 +231,47 @@ import productData from '../data/products.json'
 import quoteData from '../data/quotes.json'
 import FlatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
+import Buefy from 'buefy'
 
 export default {
   name: 'Main',
   data () {
     return {
+
       lists: listData.lists.tree,
+      fpListIDs: [],
+      lastSelectedListItem: {},
+      fpListsShared: false,
+
       orders: orderData.orders,
       products: productData.products,
       quotes: quoteData.quotes,
 
-      jobNames: [],
-      fpOrderJobNames: [],
+      brands: [],
+      fpBrands: [],
 
-      poNumbers: [],
-      fpOrderPONumbers: [],
-
-      fpSearchTerm: '',
+      categories: [],
+      fpCategories: [],
 
       fpOrderIDs: [],
       fpQuoteIDs: [],
-      fpListIDs: [],
 
-      fpListsShared: false,
+      collapseSectionOneIsOpen: false,
+      collapseSectionTwoIsOpen: false,
+      collapseSectionThreeIsOpen: false,
+      collapseSectionFourIsOpen: false,
+
+      jobs: [],
+      fpJobs: [],
+
+      pos: [],
+      fpPOs: [],
+
+      accounts: [],
+      fpAccounts: [],
+
+      fpSearchTerm: '',
+
 
       fpOrderStartDate: null,
       fpOrderEndDate: null,
@@ -203,6 +280,9 @@ export default {
         dateFormat: 'm-d-Y'
       }
     }
+  },
+  filters: {
+
   },
   computed: {
     filteredProducts: function () {
@@ -237,14 +317,21 @@ export default {
         })
       }
 
-      if (this.fpOrderJobNames.length) {
+      if (this.fpJobs.length) {
         let func = this.prodIsInOrderJobFilter
         fp = _.filter(fp, function (product) {
           return func(product.code)
         })
       }
 
-      if (this.fpOrderPONumbers.length) {
+      if (this.fpAccounts.length) {
+        let func = this.accountFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
+      if (this.fpPOs.length) {
         let func = this.prodIsInOrderPOFilter
         fp = _.filter(fp, function (product) {
           return func(product.code)
@@ -264,10 +351,84 @@ export default {
         })
       }
 
+      /* ------- My Lists --------- */
+      if (this.fpListIDs.length) {
+        let func = this.prodIsInListIDFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
+      /* ------- Categories --------- */
+      if (this.fpCategories.length) {
+        let func = this.categoryFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
+      /* ------- Brands --------- */
+      if (this.fpBrands.length) {
+        let func = this.brandFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
       return fp
     }
   },
   methods: {
+    productListFilterMessage: function (prodID) {
+      // console.log(prodID + ': productListFilterMessage')
+      // console.log('this.fpListIDs: ' + this.fpListIDs)
+      let listOfLists = []
+      for (var list in this.lists) {
+        // console.log('list: ' + this.fpListIDs[list].name)
+        if (_.indexOf(_.map(this.lists[list].products, 'code'), prodID) !== -1) {
+          // console.log(prodID + ': ' + this.lists[list].name)
+          listOfLists.push(this.lists[list])
+        }
+      }
+
+      return listOfLists
+    },
+    brandFilter: function (prodID) {
+      let index = _.indexOf(_.map(this.products, 'code'), prodID)
+      // console.log('index', index)
+      let brand = this.products[index].brand
+      // console.log(category)
+      return _.includes(this.fpBrands, brand)
+    },
+    categoryFilter: function (prodID) {
+      let index = _.indexOf(_.map(this.products, 'code'), prodID)
+      // console.log('index', index)
+      let category = this.products[index].categories
+      // console.log(category)
+      return _.includes(this.fpCategories, category)
+    },
+    accountFilter: function (prodID) {
+      var bool = false
+      var ordersThatIncludeFilteredAccount = []
+      var accounts = this.fpAccounts
+      _.forEach(this.orders, function (order) {
+        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobs, 'value'), order['job-name']))
+        if (_.includes(_.map(accounts, 'value'), order['account'])) {
+          ordersThatIncludeFilteredAccount.push(order)
+        }
+      })
+      // console.log(ordersThatIncludeFilteredJob.length)
+      _.forEach(ordersThatIncludeFilteredAccount, function (order) {
+        // console.log('order[\'products-ordered\']: ' + order['products-ordered'])
+        // loop through an array of orders that include one of the selected job
+        // and filter products no in the order
+        if (_.includes(_.map(order['products-ordered'], 'code'), prodID)) {
+          // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
+          bool = true
+        }
+      })
+      return bool
+    },
     prodIsInOrderAfterStartDate: function (prodID) {
       var bool = true
       console.log('prodIsInOrderAfterStartDate - checking against date value: ' + this.fpOrderStartDate)
@@ -304,13 +465,23 @@ export default {
       })
       return bool
     },
+    prodIsInListIDFilter: function (prodID) {
+      var bool = false
+      _.forEach(this.fpListIDs, function (order) {
+        if (_.includes(_.map(order['products'], 'code'), prodID)) {
+          // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
+          bool = true
+        }
+      })
+      return bool
+    },
     prodIsInOrderJobFilter: function (prodID) {
       var bool = false
       var ordersThatIncludeFilteredJob = []
-      var jobNames = this.fpOrderJobNames
+      var jobs = this.fpJobs
       _.forEach(this.orders, function (order) {
-        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobNames, 'value'), order['job-name']))
-        if (_.includes(_.map(jobNames, 'value'), order['job-name'])) {
+        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobs, 'value'), order['job-name']))
+        if (_.includes(_.map(jobs, 'value'), order['job-name'])) {
           ordersThatIncludeFilteredJob.push(order)
         }
       })
@@ -329,10 +500,10 @@ export default {
     prodIsInOrderPOFilter: function (prodID) {
       var bool = false
       var ordersThatIncludeFilteredPO = []
-      var poNumbers = this.fpOrderPONumbers
+      var pos = this.fpPOs
       _.forEach(this.orders, function (order) {
-        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobNames, 'value'), order['job-name']))
-        if (_.includes(_.map(poNumbers, 'value'), order['purchase-order-number'])) {
+        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobs, 'value'), order['job-name']))
+        if (_.includes(_.map(pos, 'value'), order['purchase-order-number'])) {
           ordersThatIncludeFilteredPO.push(order)
         }
       })
@@ -365,8 +536,9 @@ export default {
       // console.log('prodIsShared: ' + prodID + ' returning ' + listContainsAProductID)
       return listContainsAProductID
     },
-    onSelectLists (items, lastSelectItem) {
+    onSelectListID (items, lastSelectItem) {
       this.fpListIDs = items
+      this.lastSelectedListItem = lastSelectItem
     },
     onSelectOrderID (items, lastSelectItem) {
       this.fpOrderIDs = items
@@ -374,13 +546,16 @@ export default {
     onSelectQuoteID (items, lastSelectItem) {
       this.fpQuoteIDs = items
     },
-    onSelectOrderJob (items, lastSelectItem) {
-      this.fpOrderJobNames = items
-      // console.log('fpOrderJobNames: ' + JSON.stringify(this.fpOrderJobNames))
+    onSelectJob (items, lastSelectItem) {
+      this.fpJobs = items
+      // console.log('fpJobs: ' + JSON.stringify(this.fpJobs))
       // this.lastSelectedOrderID = lastSelectItem
     },
-    onSelectOrderPO (items, lastSelectItem) {
-      this.fpOrderPONumbers = items
+    onSelectAccount (items, lastSelectItem) {
+      this.fpAccounts = items
+    },
+    onSelectPO (items, lastSelectItem) {
+      this.fpPOs = items
     },
     onSelectOrderStartDate (selectedDates, dateStr, instance) {
       // console.log('Date change hook was called', dateStr)
@@ -400,7 +575,8 @@ export default {
   },
   components: {
     MultiSelect,
-    FlatPickr
+    FlatPickr,
+    Buefy
   },
   mounted: function () {
     console.log('Main.vue, mounted: Build Filters...')
@@ -423,6 +599,29 @@ export default {
       this.lists[list].text = this.lists[list]['name']
     }
 
+
+    for (let product in this.products) {
+
+      // create brands
+      if (this.products[product].brand) {
+        let index = _.indexOf(_.map(this.brands, 'name'), this.products[product].brand)
+        if (index === -1) {
+          this.brands.push({ name: this.products[product].brand, count: 1 })
+        } else {
+          this.brands[index].count++
+        }
+      }
+      // create categories
+      if (this.products[product].categories) {
+        let index = _.indexOf(_.map(this.categories, 'name'), this.products[product].categories)
+        if (index === -1) {
+          this.categories.push({ name: this.products[product].categories, count: 1 })
+        } else {
+          this.categories[index].count++
+        }
+      }
+    }
+
     /*
     // for every product
       // iterate through orders and
@@ -432,17 +631,22 @@ export default {
 
     /*
       // for every order
-        // add any new job names to the jobNames array
+        // add any new job names to the jobs array
     */
     for (let order in this.orders) {
-      // console.log(_.indexOf(this.jobNames, this.orders[order]['job-name']))
-      if (this.orders[order]['job-name'] && _.indexOf(this.jobNames, this.orders[order]['job-name']) === -1) {
+      // console.log(_.indexOf(this.jobs, this.orders[order]['job-name']))
+      if (this.orders[order]['job-name'] && _.indexOf(_.map(this.jobs, 'value'), this.orders[order]['job-name']) === -1) {
         // console.log('yeah! ' + this.orders[order]['job-name'])
-        this.jobNames.push({ text: this.orders[order]['job-name'], value: this.orders[order]['job-name'] })
+        this.jobs.push({ text: this.orders[order]['job-name'], value: this.orders[order]['job-name'] })
+      }
+      // console.log(this.orders[order]['order-number'] + ': ' + _.indexOf(_.map(this.accounts, 'value'), this.orders[order]['account']) === -1)
+      if (this.orders[order]['account'] && _.indexOf(_.map(this.accounts, 'value'), this.orders[order]['account']) === -1) {
+        // console.log('yeah! ' + this.orders[order]['account'])
+        this.accounts.push({ text: this.orders[order]['account'], value: this.orders[order]['account'] })
       }
 
-      if (this.orders[order]['purchase-order-number'] && _.indexOf(this.poNumbers, this.orders[order]['purchase-order-number']) === -1) {
-        this.poNumbers.push({ text: this.orders[order]['purchase-order-number'], value: this.orders[order]['purchase-order-number'] })
+      if (this.orders[order]['purchase-order-number'] && _.indexOf(this.pos, this.orders[order]['purchase-order-number']) === -1) {
+        this.pos.push({ text: this.orders[order]['purchase-order-number'], value: this.orders[order]['purchase-order-number'] })
       }
     }
 

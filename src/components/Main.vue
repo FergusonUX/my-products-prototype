@@ -119,7 +119,7 @@
               <li>
                 <label class="checkbox">
                   <input type="checkbox" v-model="fpListsShared">
-                    &nbsp; Shared
+                    &nbsp; Shared With Me
                 </label>
               </li>
               <!-- <li>Favorite</li> -->
@@ -172,7 +172,7 @@
               </li>
             </ul>
           </b-collapse>
-        
+
           <br>
 
         </div>
@@ -189,21 +189,36 @@
              >
                <div class="product-list-item">
                  <div class="product-list-item-content">
+
                    <div class="is-horizontal-center">
                      <figure class="image is-128x128" style="overflow:hidden;">
                        <img class="img" v-bind:src="item.image" alt="">
                      </figure>
                    </div>
+
+                   <div v-if="productShared(item.code)" style="display:inline-block; position:absolute; float:left; top:3px; left:8px;">
+                     <span class="icon has-text-info">
+                       <i class="fas fa-user-plus"></i>
+                     </span>
+                   </div>
+
                    <br>
                    <p class="has-text-weight-bold product-list-item-title">{{item.name}}</p>
                    <p class="is-size-7">{{item.code}}</p>
+
+                   <div v-if="fpOrderIDs.length">
+                     <br>
+                     <p class="is-size-7">
+                       <span>Ordered {{productOrderFilterMethod(item.code).length}} time<span v-if="productOrderFilterMethod(item.code).length > 1">s</span>.</span>
+                     </p>
+                   </div>
 
                    <div v-if="fpListIDs.length">
                      <br>
                      <p class="is-size-7">
                        <span>Found in</span>
                        <span class=""><a href="#">{{lastSelectedListItem.value}}</a></span>
-                       <span v-if="productListFilterMessage(item.code).length > 1">and {{productListFilterMessage(item.code).length - 1}} other list</span><span v-if="productListFilterMessage(item.code).length > 2">(s)</span>
+                       <span v-if="productListFilterMethod(item.code).length > 1">and {{productListFilterMethod(item.code).length - 1}} other list</span><span v-if="productListFilterMethod(item.code).length > 2">(s)</span>
                      </p>
                    </div>
 
@@ -379,7 +394,34 @@ export default {
     }
   },
   methods: {
-    productListFilterMessage: function (prodID) {
+    productOrderFilterMethod: function (prodID) {
+      // console.log(prodID + ': productListFilterMessage')
+      // console.log('this.fpListIDs: ' + this.fpListIDs)
+      let listOfOrders = []
+      for (var order in this.orders) {
+        // console.log('list: ' + this.fpListIDs[list].name)
+        if (_.indexOf(_.map(this.orders[order]['products-ordered'], 'code'), prodID) !== -1) {
+          // console.log(prodID + ': ' + this.lists[list].name)
+          listOfOrders.push(this.orders[order])
+        }
+      }
+
+      return listOfOrders
+    },
+    productShared: function (prodID) {
+      let productShared = false
+      for (var list in this.lists) {
+        // console.log('list: ' + this.fpListIDs[list].name)
+        if (_.indexOf(_.map(this.lists[list].products, 'code'), prodID) !== -1) {
+          if (this.lists[list]['is-shared']) {
+            productShared = true
+          }
+        }
+      }
+
+      return productShared
+    },
+    productListFilterMethod: function (prodID) {
       // console.log(prodID + ': productListFilterMessage')
       // console.log('this.fpListIDs: ' + this.fpListIDs)
       let listOfLists = []

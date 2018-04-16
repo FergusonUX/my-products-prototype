@@ -28,12 +28,20 @@
                            :options="orders"
                            :selected-options="fpOrderIDs"
                            placeholder="select order #"
-                           @select="onSelectOrders">
+                           @select="onSelectOrderID">
+              </multi-select>
+            </li><br>
+            <li>Job Name
+              <multi-select
+                           :options="jobNames"
+                           :selected-options="fpOrderJobNames"
+                           placeholder="select job"
+                           @select="onSelectOrderJob">
               </multi-select>
             </li><br>
             <li>Date Range</li>
             <!-- <li>Order Status</li> -->
-            <li>Job Name</li>
+
             <li>PO #</li>
           </ul>
           <hr>
@@ -146,6 +154,9 @@ export default {
       products: productData.products,
       quotes: quoteData.quotes,
 
+      jobNames: [],
+      fpOrderJobNames: [],
+
       fpSearchTerm: '',
       fpOrderIDs: [],
       fpListIDs: [],
@@ -180,24 +191,13 @@ export default {
         fp = _.filter(fp, function (product) {
           return func(product.code)
         })
-        /*
-        var idArray = []
-        _.forIn(this.fpOrderIDs, function (o) {
-          idArray.push(o['order-number'])
+      }
+
+      if (this.fpOrderJobNames.length) {
+        let func = this.prodIsInOrderJobFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
         })
-        // console.log(idArray)
-        fp = _.filter(fp, function (o) {
-          var productContainsASelectedOrderID = false
-          _.forIn(o.orders, function (o) {
-            // console.log(o['order-number'])
-            // console.log(_.includes(idArray, o['order-number']))
-            if (_.includes(idArray, o['order-number'])) {
-              productContainsASelectedOrderID = true
-            }
-          })
-          return productContainsASelectedOrderID
-        })
-        */
       }
 
       return fp
@@ -207,6 +207,28 @@ export default {
     prodIsInOrderFilter: function (prodID) {
       var bool = false
       _.forEach(this.fpOrderIDs, function (order) {
+        if (_.includes(_.map(order['products-ordered'], 'code'), prodID)) {
+          // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
+          bool = true
+        }
+      })
+      return bool
+    },
+    prodIsInOrderJobFilter: function (prodID) {
+      var bool = false
+      var ordersThatIncludeFilteredJob = []
+      var jobNames = this.fpOrderJobNames
+      _.forEach(this.orders, function (order) {
+        // console.log(order['order-number'] + ': ' + _.includes(_.map(jobNames, 'value'), order['job-name']))
+        if (_.includes(_.map(jobNames, 'value'), order['job-name'])) {
+          ordersThatIncludeFilteredJob.push(order)
+        }
+      })
+      // console.log(ordersThatIncludeFilteredJob.length)
+      _.forEach(ordersThatIncludeFilteredJob, function (order) {
+        // console.log('order[\'products-ordered\']: ' + order['products-ordered'])
+        // loop through an array of orders that include one of the selected job
+        // and filter products no in the order
         if (_.includes(_.map(order['products-ordered'], 'code'), prodID)) {
           // console.log(prodID + ': ' + _.includes(_.map(order['products-ordered'], 'code'), prodID))
           bool = true
@@ -235,8 +257,13 @@ export default {
       this.fpListIDs = items
       // this.lastSelectedOrderID = lastSelectItem
     },
-    onSelectOrders (items, lastSelectItem) {
+    onSelectOrderID (items, lastSelectItem) {
       this.fpOrderIDs = items
+      // this.lastSelectedOrderID = lastSelectItem
+    },
+    onSelectOrderJob (items, lastSelectItem) {
+      this.fpOrderJobNames = items
+      // console.log('fpOrderJobNames: ' + JSON.stringify(this.fpOrderJobNames))
       // this.lastSelectedOrderID = lastSelectItem
     }
   },
@@ -247,13 +274,13 @@ export default {
     console.log('Main.vue, mounted: Build Filters...')
 
     // modify orders object
-    for (var order in this.orders) {
+    for (let order in this.orders) {
       this.orders[order].value = this.orders[order]['order-number']
       this.orders[order].text = this.orders[order]['order-number']
     }
 
     // modify lists object
-    for (var list in this.lists) {
+    for (let list in this.lists) {
       this.lists[list].value = this.lists[list]['name']
       this.lists[list].text = this.lists[list]['name']
     }
@@ -265,8 +292,17 @@ export default {
           // if it does, add the order data to it
     */
 
-
-
+    /*
+      // for every order
+        // add any new job names to the jobNames array
+    */
+    for (let order in this.orders) {
+      // console.log(_.indexOf(this.jobNames, this.orders[order]['job-name']))
+      if (this.orders[order]['job-name'] && _.indexOf(this.jobNames, this.orders[order]['job-name']) === -1) {
+        // console.log('yeah! ' + this.orders[order]['job-name'])
+        this.jobNames.push({ text: this.orders[order]['job-name'], value: this.orders[order]['job-name'] })
+      }
+    }
 
 
 
@@ -302,12 +338,10 @@ export default {
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/functions"
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/initial-variables"
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/derived-variables"
-  @import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/mixins"
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/components/card"
-  @import "../../node_modules/@ferguson-enterprises/fds-css/sass/layout/columns"
+
   .header
     background: $color-brand
-
   .product-list-item
     @extend .card
     line-height: 1.25

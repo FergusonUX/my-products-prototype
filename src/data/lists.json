@@ -12,7 +12,9 @@
         "type": "list",
         "is-shared": true,
         "products": [
-          { "code": "C270210", "quantity": 1 }
+          { "code": "C270210", "quantity": 1 },
+          { "code": "WLF007M1QTK", "quantity": 3 },
+          { "code": "DNHCK", "quantity": 2 }
         ]
       },
       {

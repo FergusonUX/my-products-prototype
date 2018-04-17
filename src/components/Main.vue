@@ -10,11 +10,11 @@
 
     <div class="container">
 
-      <br><br>
-
       <div class="columns">
 
+        <!-- left rail -->
         <div class="column is-3">
+          <br><br>
           <h2 class="subtitle is-size-3">Filters</h2>
           <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="search product name">
           <br><br><br>
@@ -122,7 +122,12 @@
                     &nbsp; Shared With Me
                 </label>
               </li>
-              <!-- <li>Favorite</li> -->
+              <li>
+                <label class="checkbox">
+                  <input type="checkbox" v-model="fpFavorite">
+                    &nbsp; Favorite
+                </label>
+              </li>
               <!-- <li>Job Name</li> -->
             </ul>
           </b-collapse>
@@ -176,18 +181,35 @@
           <br>
 
         </div>
+        <!-- /end left rail -->
 
+        <!-- main content -->
         <div class="column">
-
+          <br><br>
           <h2 class="title is-size-3">My Products</h2>
 
-
+          <!-- is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen -->
+          <!-- is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen -->
            <div class="columns is-multiline">
-             <div class="column is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen product-results-list"
+             <div class="column product-list-item-wrapper"
+                v-bind:class="[
+                                { 'is-one-half-tablet': !hideRightRail },
+                                { 'is-one-third-desktop': !hideRightRail },
+                                { 'is-one-quarter-widescreen': !hideRightRail },
+                                { 'is-one-third-tablet': hideRightRail },
+                                { 'is-one-quarter-desktop': hideRightRail },
+                                { 'is-one-fifth-widescreen': hideRightRail }
+                              ]"
                 v-for="(item) in filteredProducts"
                 v-bind:key="item.code"
              >
-               <div class="product-list-item">
+                <!-- @click="showProductDetail(item.code)" -->
+               <div class="product-list-item"
+
+                    v-bind:class="[
+                                    { 'highlight-product': selectedProduct === item.code }
+                                  ]"
+               >
                  <div class="product-list-item-content">
 
                    <div class="is-horizontal-center">
@@ -196,8 +218,11 @@
                      </figure>
                    </div>
 
-                   <div v-if="productShared(item.code)" style="display:inline-block; position:absolute; float:left; top:3px; left:8px;">
-                     <span class="icon has-text-info">
+                   <div style="display:inline-block; position:absolute; float:left; top:3px; left:8px;">
+                     <span v-if="item['is-favorite']" class="icon has-text-warning">
+                       <i class="fas fa-star"></i>
+                     </span>
+                     <span v-if="productShared(item.code)" class="icon has-text-grey-light">
                        <i class="fas fa-user-plus"></i>
                      </span>
                    </div>
@@ -210,6 +235,8 @@
                      <br>
                      <p class="is-size-7">
                        <span>Ordered {{productOrderFilterMethod(item.code).length}} time<span v-if="productOrderFilterMethod(item.code).length > 1">s</span>.</span>
+                       <br><br>
+                       <span>Last order was <a href="#">#{{productOrderFilterMethod(item.code)[0]['order-number']}}</a> on {{formatDate(productOrderFilterMethod(item.code)[0]['date-ordered'])}} time<span v-if="productOrderFilterMethod(item.code).length > 1">s</span>.</span>
                      </p>
                    </div>
 
@@ -222,14 +249,45 @@
                      </p>
                    </div>
 
+                   <div v-if="fpCategories.length">
+                     <br>
+                     <p class="is-size-7">
+                       <span>Found in <a href="#">{{item.categories}}</a></span>
+                     </p>
+                   </div>
+
+                   <div v-if="fpBrands.length">
+                     <br>
+                     <p class="is-size-7">
+                       <span>{{item.brand}}</span>
+                     </p>
+                   </div>
+
                  </div>
 
                </div>
              </div>
            </div>
+
+
+
         </div>
+        <!-- /end main content -->
+
+        <!-- right rail -->
+        <div class="column is-2" :class="{ 'hide': hideRightRail }" style="border-left:1px solid red; background: pink;">
+          <div class="right-rail" style="border-left:1px solid red; background: pink;">
+            <br><br>
+            <h2 class="subtitle is-size-3">Product</h2>
+            <button @click="hideProductDetail()">Close</button>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris neque neque, porta tristique venenatis ut, condimentum eu ipsum. In rutrum velit eget imperdiet volutpat. Fusce malesuada mauris pellentesque vulputate vestibulum. Duis imperdiet a quam ac rhoncus. Nunc imperdiet, sapien eu hendrerit sodales, eros turpis fermentum enim, nec ornare augue nisi non lorem. Aenean porta ut lorem quis faucibus. Nulla ac enim porttitor, commodo metus id, imperdiet velit. Suspendisse felis justo, tempor a sapien at, volutpat placerat metus. Quisque quis risus eget mauris cursus cursus sit amet ac arcu. Vivamus dapibus hendrerit velit. Nullam quis vestibulum ante, vel euismod est.</p>
+          </div>
+
+        </div>
+        <!-- /end right rail -->
 
       </div>
+
     </div>
 
 
@@ -256,7 +314,9 @@ export default {
       lists: listData.lists.tree,
       fpListIDs: [],
       lastSelectedListItem: {},
+
       fpListsShared: false,
+      fpFavorite: false,
 
       orders: orderData.orders,
       products: productData.products,
@@ -293,7 +353,10 @@ export default {
 
       flatPickrConfig: {
         dateFormat: 'm-d-Y'
-      }
+      },
+
+      hideRightRail: true,
+      selectedProduct: ''
     }
   },
   filters: {
@@ -315,6 +378,13 @@ export default {
         let func = this.prodIsShared
         fp = _.filter(fp, function (product) {
           return func(product.code)
+        })
+      }
+
+      if (this.fpFavorite) {
+        // let func = this.prodIsShared
+        fp = _.filter(fp, function (product) {
+          return product['is-favorite']
         })
       }
 
@@ -394,6 +464,40 @@ export default {
     }
   },
   methods: {
+    formatDate: function (value, format) {
+      // console.log('value: ' + value)
+      if (!format) {
+        format = 'MMMM DD, YYYY'
+      }
+      // var dateObj = new Date(value)
+      var retDate = moment.unix(value).format(format)
+      return retDate
+    },
+    showProductDetail: function (code) {
+
+      if (code) {
+        console.log('showProductDetail: ' + code)
+        if (code === this.selectedProduct) {
+          // console.log('if')
+          this.$parent.$emit('hideProductDetail')
+          this.selectedProduct = ''
+        } else if (code !== this.selectedProduct) {
+          // console.log('else if')
+          this.$parent.$emit('showProductDetail')
+          this.selectedProduct = code
+        } else {
+          // console.log('else')
+          this.$parent.$emit('showProductDetail')
+        }
+
+      } else {
+        // do nothing
+      }
+    },
+    hideProductDetail: function () {
+      this.selectedProduct = ''
+      this.$parent.$emit('hideProductDetail')
+    },
     productOrderFilterMethod: function (prodID) {
       // console.log(prodID + ': productListFilterMessage')
       // console.log('this.fpListIDs: ' + this.fpListIDs)
@@ -621,8 +725,17 @@ export default {
     Buefy
   },
   mounted: function () {
-    console.log('Main.vue, mounted: Build Filters...')
-
+    console.log('Running...')
+    this.$parent.$on('showProductDetail', () => {
+      this.hideRightRail = false
+    })
+    this.$parent.$on('hideProductDetail', () => {
+      this.hideRightRail = true
+    })
+    this.$parent.$on('toggleNav', () => {
+      // console.log('received')
+      this.hideRightRail = !this.hideRightRail
+    })
     // modify orders object
     for (let order in this.orders) {
       this.orders[order].value = this.orders[order]['order-number']
@@ -730,15 +843,15 @@ export default {
 
   .header
     background: $color-brand
+  .product-list-item-wrapper
+    display: flex
   .product-list-item
     @extend .card
     line-height: 1.25
     color: #000000
   .product-list-item-content
     @extend .card-content
-    padding: 12px
-  .product-results-list
-    display: flex
+    padding: 16px 12px 12px 12px
   .is-horizontal-center
     justify-content: center
     text-align: -webkit-center
@@ -757,4 +870,11 @@ export default {
     transform: translateX(-50%) translateY(-50%)
     max-width: 100%
     max-height: 100%
+  .hide
+    display: none
+  .highlight-product
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.5), 0 0 0 1px rgba(10, 10, 10, 0.5);
+  .right-rail
+    // background: red
+
 </style>

@@ -5,133 +5,152 @@
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=41869",
       "code": "C270210",
       "categories": "Test Plugs and Balls",
-      "brand": "Cherne"
+      "brand": "Cherne",
+      "is-favorite": true
     },
     {
       "name": "Gripper 2 in. Gripper Mechanical Plug",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=25286",
       "code": "C270229",
       "categories": "Test Plugs and Balls",
-      "brand": "Cherne"
+      "brand": "Cherne",
+      "is-favorite": false
     },
     {
       "name": "Water-Tite 6 ft. Shower Pan Liner in Grey",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3520467",
       "code": "I83450",
       "categories": "Shower Pan Liners",
-      "brand": "IPS Corporation"
+      "brand": "IPS Corporation",
+      "is-favorite": true
     },
     {
       "name": "2-3/10 in. Locking Tradesman Utility Knife",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3265400",
       "code": "L10771FLK1",
       "categories": "Utility Knives",
-      "brand": "Lenox"
+      "brand": "Lenox",
+      "is-favorite": false
     },
     {
       "name": "2 in. Bronze Double Check Backflow Preventer Assembly",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=2980939",
       "code": "WLF007M1QTK",
       "categories": "",
-      "brand": "Watts"
+      "brand": "Watts",
+      "is-favorite": false
     },
     {
       "name": "2 in. No-Hub Cast Iron 45 Degree 1/8 Bend",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=17290",
       "code": "NH4K",
       "categories": "Cast Iron Bends",
-      "brand": ""
+      "brand": "",
+      "is-favorite": false
     },
     {
       "name": "2 in. No-Hub Stainless Steel Coupling",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=49972",
       "code": "DNHCK",
       "categories": "Stainless Steel Couplings",
-      "brand": ""
+      "brand": "",
+      "is-favorite": false
     },
     {
       "name": "4 in. No-Hub Stainless Steel Coupling",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=15790",
       "code": "DNHCP",
       "categories": "Stainless Steel Couplings",
-      "brand": ""
+      "brand": "",
+      "is-favorite": false
     },
     {
       "name": "2 in. Plated Adjustable Standard Clevis Hanger in Silver",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060378",
       "code": "FNW7005Z0200",
       "categories": "Pipe & Conduit Hangers",
-      "brand": "FNW"
+      "brand": "FNW",
+      "is-favorite": false
     },
     {
       "name": "3 in. Plated Adjustable Standard Clevis Hanger in Silver",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060322",
       "code": "FNW7005Z0300",
       "categories": "Pipe & Conduit Hangers",
-      "brand": "FNW"
+      "brand": "FNW",
+      "is-favorite": false
     },
     {
       "name": "4 in. Plated Adjustable Standard Clevis Hanger in Silver",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060369",
       "code": "FNW7005Z0400",
       "categories": "Pipe & Conduit Hangers",
-      "brand": "FNW"
+      "brand": "FNW",
+      "is-favorite": false
     },
     {
       "name": "2 in. Zinc-Plated Riser Clamp",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5060304",
       "code": "FNW7022Z0200",
       "categories": "Riser Clamp",
-      "brand": "FNW"
+      "brand": "FNW",
+      "is-favorite": false
     },
     {
       "name": "4 in. No-Hub Cast Iron Straight 1/8 Bend",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098805",
       "code": "TNH4P",
       "categories": "Cast Iron Bends",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     },
     {
       "name": "2 in. No-Hub Cast Iron 1/4 Degree Bend",
       "image": "https://www.ferguson.com/dar/default_STANDARD.png",
       "code": "TNH9K",
       "categories": "Cast Iron Bends",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     },
     {
       "name": "3 in. No-Hub Cast Iron 1/4 Degree Bend",
       "image": "https://www.ferguson.com/dar/default_STANDARD.png",
       "code": "TNH9M",
       "categories": "Cast Iron Bends",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     },
     {
       "name": "3 x 3 x 2 in. No-Hub Cast Iron Sanitary Tee",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098922",
       "code": "TNHSTMMK",
       "categories": "",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     },
     {
       "name": "4 x 4 x 2 in. No-Hub Cast Iron Sanitary Tee",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098465",
       "code": "TNHSTPPK",
       "categories": "Cast Iron Tees",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     },
     {
       "name": "4 x 4 x 2 in. No-Hub Reducing Cast Iron Wye",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5098412",
       "code": "TNHYPPK",
       "categories": "Cast Iron Tees",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     },
     {
       "name": "2 in. x 10 ft. No-Hub Cast Iron Soil Pipe",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4582905",
       "code": "TNHPK10",
       "categories": "Cast Iron Soil Pipe",
-      "brand": "Tyler Pipe"
+      "brand": "Tyler Pipe",
+      "is-favorite": false
     }
   ]
 }

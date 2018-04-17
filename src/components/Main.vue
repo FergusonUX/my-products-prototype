@@ -180,6 +180,17 @@
 
           <br>
 
+          <button class="button is-primary is-medium"
+                  @click="cardModal()"
+          >
+            Launch modal 1
+          </button>
+          <button class="button is-primary is-medium"
+                  @click="isComponentModalActive = true"
+          >
+            Launch modal 2
+          </button>
+
         </div>
         <!-- /end left rail -->
 
@@ -205,7 +216,7 @@
              >
                 <!-- @click="showProductDetail(item.code)" -->
                <div class="product-list-item"
-
+                    @click="showProductModal(item)"
                     v-bind:class="[
                                     { 'highlight-product': selectedProduct === item.code }
                                   ]"
@@ -290,6 +301,14 @@
 
     </div>
 
+    <!-- modal -->
+    <div class="">
+      <b-modal :active.sync="isComponentModalActive" has-modal-card>
+        <ProductModal v-bind="formProps"></ProductModal>
+      </b-modal>
+    </div>
+    <!-- /end modal -->
+
 
   </div>
 </template>
@@ -305,6 +324,7 @@ import quoteData from '../data/quotes.json'
 import FlatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import Buefy from 'buefy'
+import ProductModal from '@/components/ProductModal'
 
 export default {
   name: 'Main',
@@ -356,7 +376,14 @@ export default {
       },
 
       hideRightRail: true,
-      selectedProduct: ''
+      selectedProduct: '',
+      selectedProductObj: { name: 'Tony' },
+
+      isComponentModalActive: false,
+      formProps: {
+        email: 'evan@you.com',
+        password: 'testing'
+      }
     }
   },
   filters: {
@@ -464,6 +491,25 @@ export default {
     }
   },
   methods: {
+    showProductModal: function (product) {
+      this.selectedProductObj = product
+      this.$modal.open({
+        parent: this,
+        component: ProductModal,
+        hasModalCard: true
+      })
+    },
+    cardModal: function () {
+      this.$modal.open({
+        parent: this,
+        component: ProductModal,
+        hasModalCard: true,
+        testMessage: 'Weeeeeee'
+      })
+    },
+    closeModal: function () {
+      this.$parent.$emit('close')
+    },
     formatDate: function (value, format) {
       // console.log('value: ' + value)
       if (!format) {
@@ -722,10 +768,15 @@ export default {
   components: {
     MultiSelect,
     FlatPickr,
-    Buefy
+    Buefy,
+    ProductModal
   },
   mounted: function () {
     console.log('Running...')
+    this.$parent.$on('close', () => {
+      console.log('CLOSE')
+      this.$modal.close()
+    })
     this.$parent.$on('showProductDetail', () => {
       this.hideRightRail = false
     })

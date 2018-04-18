@@ -7,7 +7,6 @@
       </div>
     </div>
 
-
     <div class="container">
 
       <div class="columns">
@@ -16,7 +15,8 @@
         <div class="column is-3">
           <br><br>
           <h2 class="subtitle is-size-3">Filters</h2>
-          <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="search product name">
+          <p>Search Term</p>
+          <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="">
           <br><br><br>
 
           <b-collapse class="panel" :open.sync="collapseSectionOneIsOpen" animation="fade">
@@ -180,17 +180,6 @@
 
           <br>
 
-          <button class="button is-primary is-medium"
-                  @click="cardModal()"
-          >
-            Launch modal 1
-          </button>
-          <button class="button is-primary is-medium"
-                  @click="isComponentModalActive = true"
-          >
-            Launch modal 2
-          </button>
-
         </div>
         <!-- /end left rail -->
 
@@ -247,7 +236,7 @@
                      <p class="is-size-7">
                        <span>Ordered {{productOrderFilterMethod(item.code).length}} time<span v-if="productOrderFilterMethod(item.code).length > 1">s</span>.</span>
                        <br><br>
-                       <span>Last order was <a href="#">#{{productOrderFilterMethod(item.code)[0]['order-number']}}</a> on {{formatDate(productOrderFilterMethod(item.code)[0]['date-ordered'])}} time<span v-if="productOrderFilterMethod(item.code).length > 1">s</span>.</span>
+                       <span>Last order was <a class="inactive-link" href="#">#{{productOrderFilterMethod(item.code)[0]['order-number']}}</a> on {{formatDate(productOrderFilterMethod(item.code)[0]['date-ordered'])}} time<span v-if="productOrderFilterMethod(item.code).length > 1">s</span>.</span>
                      </p>
                    </div>
 
@@ -255,7 +244,7 @@
                      <br>
                      <p class="is-size-7">
                        <span>Found in</span>
-                       <span class=""><a href="#">{{lastSelectedListItem.value}}</a></span>
+                       <span class=""><a class="inactive-link" href="#">{{lastSelectedListItem.value}}</a></span>
                        <span v-if="productListFilterMethod(item.code).length > 1">and {{productListFilterMethod(item.code).length - 1}} other list</span><span v-if="productListFilterMethod(item.code).length > 2">(s)</span>
                      </p>
                    </div>
@@ -263,7 +252,7 @@
                    <div v-if="fpCategories.length">
                      <br>
                      <p class="is-size-7">
-                       <span>Found in <a href="#">{{item.categories}}</a></span>
+                       <span>Found in <a class="inactive-link" href="#">{{item.categories}}</a></span>
                      </p>
                    </div>
 
@@ -303,8 +292,11 @@
 
     <!-- modal -->
     <div class="">
-      <b-modal :active.sync="isComponentModalActive" has-modal-card>
-        <ProductModal v-bind="formProps"></ProductModal>
+      <b-modal :active.sync="isComponentModalActive"
+               has-modal-card
+               :component="ProductModal"
+      >
+        <!-- <ProductModal @change="changeProduct"></ProductModal> -->
       </b-modal>
     </div>
     <!-- /end modal -->
@@ -314,6 +306,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import _ from 'lodash'
 import moment from 'moment'
 import { MultiSelect } from 'vue-search-select'
@@ -325,11 +318,14 @@ import FlatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import Buefy from 'buefy'
 import ProductModal from '@/components/ProductModal'
+import Test from '@/components/Test'
 
 export default {
   name: 'Main',
   data () {
     return {
+
+      ProductModal: ProductModal,
 
       lists: listData.lists.tree,
       fpListIDs: [],
@@ -377,14 +373,17 @@ export default {
 
       hideRightRail: true,
       selectedProduct: '',
-      selectedProductObj: { name: 'Tony' },
+      selectedProductObj: {},
 
       isComponentModalActive: false,
-      formProps: {
-        email: 'evan@you.com',
-        password: 'testing'
-      }
+      eventBus: new Vue()
     }
+  },
+  components: {
+    MultiSelect,
+    FlatPickr,
+    Buefy,
+    Test
   },
   filters: {
 
@@ -397,7 +396,7 @@ export default {
       if (this.fpSearchTerm) {
         let searchTerm = this.fpSearchTerm
         fp = _.filter(fp, function (product) {
-          return _.includes(product.name.toUpperCase(), searchTerm.toUpperCase())
+          return (_.includes(product.name.toUpperCase(), searchTerm.toUpperCase()) || _.includes(product.brand.toUpperCase(), searchTerm.toUpperCase()) || _.includes(product.code.toUpperCase(), searchTerm.toUpperCase()) || _.includes(product.categories.toUpperCase(), searchTerm.toUpperCase()))
         })
       }
 
@@ -491,20 +490,27 @@ export default {
     }
   },
   methods: {
+    myCustomEvent ($event) {
+      console.log($event)
+    },
+    changeProduct: function () {
+      console.log('changeProduct')
+    },
     showProductModal: function (product) {
+      console.log('Setting selectedProductObj to ' + product.code)
       this.selectedProductObj = product
       this.$modal.open({
         parent: this,
         component: ProductModal,
-        hasModalCard: true
-      })
-    },
-    cardModal: function () {
-      this.$modal.open({
-        parent: this,
-        component: ProductModal,
         hasModalCard: true,
-        testMessage: 'Weeeeeee'
+        props: {
+          products: this.products,
+          orders: this.orders,
+          lists: this.lists,
+          quotes: this.quotes,
+          product: this.selectedProductObj,
+          eventBus: this.eventBus
+        }
       })
     },
     closeModal: function () {
@@ -765,14 +771,22 @@ export default {
       } */
     }
   },
-  components: {
-    MultiSelect,
-    FlatPickr,
-    Buefy,
-    ProductModal
-  },
   mounted: function () {
-    console.log('Running...')
+    var thisV = this
+    this.eventBus.$on('prevProduct', function (e) {
+      // console.log('prevProduct')
+      let map = _.map(thisV.products, 'code')
+      let prodIndex = _.indexOf(map, thisV.selectedProductObj.code)
+      console.log('prevProduct', thisV.products, prodIndex)
+      if (prodIndex > 0) {
+        console.log('Setting new product to ' + thisV.products[prodIndex - 1].name)
+        thisV.selectedProductObj = thisV.products[prodIndex - 1]
+      }
+    })
+    this.eventBus.$on('nextProduct', function (e) {
+      console.log('nextProduct')
+    })
+    // console.log('Running...')
     this.$parent.$on('close', () => {
       console.log('CLOSE')
       this.$modal.close()
@@ -927,5 +941,7 @@ export default {
     box-shadow: 0 2px 3px rgba(10, 10, 10, 0.5), 0 0 0 1px rgba(10, 10, 10, 0.5);
   .right-rail
     // background: red
+  .inactive-link
+    color: purple
 
 </style>

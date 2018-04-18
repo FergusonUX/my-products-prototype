@@ -4,6 +4,7 @@
       "name": "Gripper 1-1/2 in. Gripper Mechanical Plug",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=41869",
       "code": "C270210",
+      "family": "C2702",
       "categories": "Test Plugs and Balls",
       "brand": "Cherne",
       "is-favorite": true
@@ -12,6 +13,7 @@
       "name": "Gripper 2 in. Gripper Mechanical Plug",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=25286",
       "code": "C270229",
+      "family": "C2702",
       "categories": "Test Plugs and Balls",
       "brand": "Cherne",
       "is-favorite": false

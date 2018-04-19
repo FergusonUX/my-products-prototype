@@ -3,10 +3,15 @@
       <div class="product-modal" style="width: auto">
           <header class="product-modal-head">
             <div class="columns">
-              <div class="column is-one-fifth">
+              <div class="column is-one-fifth" style="min-height:175px; max-height:175px;">
                 <img class="image" v-bind:src="selectedProd.image" alt="">
               </div>
               <div class="column">
+                <p class="is-pulled-right">
+                  <span class="icon has-text-grey">
+                    <i class="fas fa-print"></i>
+                  </span>
+                </p>
                 <p class="has-text-weight-bold product-list-item-title is-size-5">{{selectedProd.name}}</p>
                 <p class="">{{selectedProd.code}}</p>
                 <p class="is-size-7">{{selectedProd.brand}}</p>
@@ -15,30 +20,57 @@
                   <br>
                   This product is part of a family of {{getProductsByFamilyID(selectedProd.family).length}} products. <a href="#" class="inactive-link">View the entire family</a>
                 </p>
+                <br>
+                <button class="button is-primary" type="button" name="button">Add to Cart</button>
               </div>
+
             </div>
-            <nav class="level">
+
+            <!-- <nav class="level">
               <div class="level-left" @click="prevProduct()">
                 <a class="button is-primary" :disabled="!canPrev">Previous</a>
               </div>
               <div class="level-left" @click="nextProduct()">
                 <a class="button is-primary" :disabled="!canNext">Next</a>
               </div>
-              <!-- <div class="level-left" @click="eventBus.$emit('prevProduct')">
-                Previous product
-              </div>
-              <div class="level-right" @click="eventBus.$emit('nextProduct')">
-                Next product
-              </div> -->
-            </nav>
+            </nav> -->
           </header>
 
 
           <section class="product-modal-body">
             <tabs animation="slide" :only-fade="false" ref="tabs">
 
+              <tab-pane label="Details">
+                <div class="">
+                  Product description and specifications will go here.
+                </div>
+              </tab-pane>
 
-              <tab-pane :label="'Orders (' + getOrdersByProductID(selectedProd.code).length + ')'">
+              <tab-pane label="Availability">
+                <div class="">
+                  <p><b>In-store Availability</b></p>
+                  <p>XX Available for pick-up in Newport News, VA</p>
+                  <p><a class="inactive-link" href="#">Check other stores</a></p>
+                  <br>
+                  <p><b>Shipping Information</b></p>
+                  <p>Available for immediate shipment</p>
+                  <p><a class="inactive-link" href="#">See what's available</a></p>
+                </div>
+              </tab-pane>
+
+              <tab-pane label="Documents">
+                <div class="">
+                  <p class="title is-5">Documents</p>
+                  <ul>
+                    <li><a class="inactive-link" href="#">Specification</a></li>
+                    <li><a class="inactive-link" href="#">Parts</a></li>
+                    <li><a class="inactive-link" href="#">Installation</a></li>
+                    <li><a class="inactive-link" href="#">Warranty</a></li>
+                  </ul>
+                </div>
+              </tab-pane>
+
+              <tab-pane :label="'My Orders (' + getOrdersByProductID(selectedProd.code).length + ')'">
                 <p class="title is-5">Order History for {{selectedProd.code}}</p>
                 <div v-if="getOrdersByProductID(selectedProd.code).length">
                   <table class="table is-fullwidth is-narrow is-striped is-size-6">
@@ -48,6 +80,7 @@
                         <th>Date</th>
                         <th>PO</th>
                         <th>Job</th>
+                        <th>Ordered By</th>
                         <th>Account</th>
                         <th>Unit</th>
                         <th></th>
@@ -62,6 +95,7 @@
                         <td>{{formatDate(order['date-ordered'], 'M/D/Y')}}</td>
                         <td>{{order['purchase-order-number']}}</td>
                         <td>{{order['job-name']}}</td>
+                        <td>{{order['ordered-by']}}</td>
                         <td>{{order['account']}}</td>
                         <td>{{getProductUnitPriceFromOrder(order['order-number'], selectedProd.code)}}</td>
                         <td><a class="inactive-link" href="#">view order</a></td>
@@ -76,7 +110,7 @@
               </tab-pane>
 
 
-              <tab-pane :label="'Quotes (' + getQuotesByProductID(selectedProd.code).length + ')'">
+              <tab-pane :label="'My Quotes (' + getQuotesByProductID(selectedProd.code).length + ')'">
                 <p class="title is-5">Quotes including {{selectedProd.code}}</p>
                 <div v-if="getQuotesByProductID(selectedProd.code).length">
                   <table class="table is-fullwidth is-narrow is-striped is-size-6">
@@ -114,7 +148,7 @@
               </tab-pane>
 
 
-              <tab-pane :label="'Lists (' + getListsByProductID(selectedProd.code).length + ')'">
+              <tab-pane :label="'My Lists (' + getListsByProductID(selectedProd.code).length + ')'">
                 <p class="title is-5">Lists including {{selectedProd.code}}</p>
                 <div v-if="getListsByProductID(selectedProd.code).length">
                   <table class="table is-fullwidth is-narrow is-striped is-size-6">
@@ -132,7 +166,7 @@
                           v-for="list in getListsByProductID(selectedProd.code)"
                           v-bind:key="list['name']"
                       >
-                        <th>{{list['name']}}</th>
+                        <td>{{list['name']}}</td>
                         <td>
                           <span v-if="list['is-shared']" class="icon has-text-grey-light">
                             <i class="fas fa-user-plus"></i>
@@ -177,7 +211,9 @@
 
 
           <footer class="product-modal-foot">
-              <button class="button" type="button" @click="$parent.close()">Close</button>
+              <button class="button" :disabled="!canPrev" @click="prevProduct()">Previous</button>
+              <button class="button" :disabled="!canNext" @click="nextProduct()">Next</button>
+              <button class="button is-pulled-right" type="button" @click="$parent.close()">Close</button>
           </footer>
       </div>
   </div>
@@ -356,8 +392,7 @@ export default {
   .product-modal-body
     background: white
     @extend .modal-card-body
-  // .product-modal-tabs-content
-    padding: 0 $modal-card-body-padding $modal-card-body-padding $modal-card-body-padding
+    min-height: 300px
   .product-modal-foot
     @extend .modal-card-foot
 

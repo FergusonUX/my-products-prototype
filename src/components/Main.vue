@@ -3,7 +3,9 @@
 
     <div class="header">
       <div class="container">
-        <p>Header</p>
+        <br>
+        <img src="../assets/logo.png" alt="">
+        <br><br>
       </div>
     </div>
 
@@ -14,8 +16,8 @@
         <!-- left rail -->
         <div class="column is-3">
           <br><br>
-          <h2 class="subtitle is-size-3">Filters</h2>
-          <p>Search Term</p>
+          <h2 class="subtitle is-size-4">Filter Products</h2>
+          <p>Keyword Search</p>
           <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="">
           <br><br><br>
 
@@ -125,7 +127,9 @@
               <li>
                 <label class="checkbox">
                   <input type="checkbox" v-model="fpFavorite">
-                    &nbsp; Favorite
+                    <span class="icon">
+                      <i class="fas fa-star"></i>
+                    </span>&nbsp; Favorite
                 </label>
               </li>
               <!-- <li>Job Name</li> -->
@@ -186,8 +190,66 @@
         <!-- main content -->
         <div class="column">
           <br><br>
-          <h2 class="title is-size-3">My Products</h2>
 
+          <div class="content">
+            <h2 class="title" style="display: inline-block;">My Products</h2>
+            &nbsp;
+            <button @click="collapseHelpIsOpen = !collapseHelpIsOpen"
+                    v-if="!collapseHelpIsOpen"
+                    class="button is-small">
+                <span class="icon has-text-grey">
+                  <i class="fas fa-question-circle"></i>
+                </span>
+            </button>
+            <b-collapse class="panel" :open.sync="collapseHelpIsOpen" animation="fade">
+              <p class="is-size-4 has-text-weight-light">My Products is a dynamically generated list of items you have ordered, quoted, or added to your My Lists - all in one place!</p>
+              <p class="is-size-4 has-text-weight-light">Your list or products may be big, so we have added some powerful filters to help you find narrow your search. </p>
+              <p>Additionally, you can click on each product to get information for things like:</p>
+              <ul>
+                <li>Product summary</li>
+                <li>Order &amp; Quote History</li>
+                <li>Product specifications, warranties, etc.</li>
+                <li>Product availability, and more!</li>
+              </ul>
+            </b-collapse>
+            <button @click="collapseHelpIsOpen = !collapseHelpIsOpen"
+                    v-if="collapseHelpIsOpen"
+                    class="button"
+                    v-bind:class="[
+                      { 'is-primary': collapseHelpIsOpen },
+                      { 'is-pulled-right': !collapseHelpIsOpen },
+                      { 'is-small': !collapseHelpIsOpen }
+                    ]">
+              <span>Great, let's get started!</span>
+            </button>
+
+          </div>
+
+
+          <!-- <div class="">
+            Slideshow
+            <div class='carousel carousel-animated carousel-animate-slide'>
+              <div class='carousel-container'>
+                <div class='carousel-item has-background is-active'>
+                  <img class="is-background" src="../assets/carousel-image-1.png" alt="" width="800" height="200" />
+                  <div class="title">Title 1</div>
+                </div>
+                <div class='carousel-item has-background'>
+                  <img class="is-background" src="../assets/carousel-image-1.png" alt="" width="800" height="200" />
+                  <div class="title">Title 2</div>
+                </div>
+              </div>
+              <div class="carousel-navigation">
+                <div class="carousel-nav-left">
+                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </div>
+                <div class="carousel-nav-right">
+                  <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+
+          </div> -->
           <!-- is-one-third-tablet is-one-quarter-desktop is-one-fifth-widescreen -->
           <!-- is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen -->
            <div class="columns is-multiline">
@@ -218,7 +280,9 @@
                      </figure>
                    </div>
 
-                   <div style="display:inline-block; position:absolute; float:left; top:3px; left:8px;">
+                   <div style="display:inline-block; position:absolute; float:left; top:3px; left:8px;"
+                        @click="toggleFavorite(item)"
+                   >
                      <span v-if="item['is-favorite']" class="icon has-text-warning">
                        <i class="fas fa-star"></i>
                      </span>
@@ -291,10 +355,11 @@
     </div>
 
     <!-- modal -->
-    <div class="">
+    <div>
       <b-modal :active.sync="isComponentModalActive"
                has-modal-card
                :component="ProductModal"
+               class="product-modal"
       >
         <!-- <ProductModal @change="changeProduct"></ProductModal> -->
       </b-modal>
@@ -319,6 +384,8 @@ import 'flatpickr/dist/flatpickr.css'
 import Buefy from 'buefy'
 import ProductModal from '@/components/ProductModal'
 import Test from '@/components/Test'
+// import 'bulma-carousel'
+import '../../node_modules/bulma-carousel/dist/bulma-carousel.js'
 
 export default {
   name: 'Main',
@@ -347,6 +414,7 @@ export default {
       fpOrderIDs: [],
       fpQuoteIDs: [],
 
+      collapseHelpIsOpen: false,
       collapseSectionOneIsOpen: false,
       collapseSectionTwoIsOpen: false,
       collapseSectionThreeIsOpen: false,
@@ -490,6 +558,9 @@ export default {
     }
   },
   methods: {
+    toggleFavorite: function (item) {
+      console.log(item.code)
+    },
     myCustomEvent ($event) {
       console.log($event)
     },
@@ -928,6 +999,7 @@ export default {
     max-height: 32px
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
+
   .img
     position: absolute
     top: 50%
@@ -944,4 +1016,122 @@ export default {
   .inactive-link
     color: purple
 
+  $carousel-nav-background: rgba($color-white, 0.7) !default
+  $carousel-nav-color: $text !default
+  $carousel-title-background: rgba($color-white, 0.6) !default
+  $carousel-title-size: $size-7 !default
+  $carousel-border: none
+  $carousel-animation-speed: .5s
+  $carousel-animation-method: ease-in-out
+  $carousel-sizes: (2, 3, 4, 5) !default
+
+  =carousel-item
+    display: block
+    position: relative
+    flex: 1 0 100%
+    &.has-background
+      .is-background
+        object-fit: cover
+        object-position: center center
+        height: 100%
+        width: 100%
+    .title
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      padding: 1.5em
+      margin: 0
+      text-align: center
+      background: $carousel-title-background
+      font-size: $carousel-title-size
+
+  =carousel-container
+    width: 100%
+    position: relative
+    border: $carousel-border
+    display: flex
+    margin: 0
+    padding: 0
+    left: -100%
+    transform: translateX(100%)
+    @content
+
+  =carousel
+    position: relative
+    overflow: hidden
+    .carousel-container
+      +carousel-container
+        .carousel-item
+          +carousel-item
+    .carousel-navigation
+      +carousel-navigation
+    &.is-reversing
+      .carousel-container
+        transform: translateX(-100%)
+      @each $size in $carousel-sizes
+        &.is-#{$size}
+          .carousel-container
+            transform: translateX(calc(-100% / #{$size}))
+
+  // Carousel Navigation (includes previous - next actions elements)
+  =carousel-navigation
+    display: flex
+    justify-content: space-around
+    width: 100%
+    .carousel-nav-left,
+    .carousel-nav-right
+      padding: 1em
+    &.is-centered
+      justify-content: center
+    &.is-overlay
+      align-items: center
+      justify-content: space-between
+      z-index: 20
+      .carousel-nav-left,
+      .carousel-nav-right
+        height: 2.2em
+        width: 2em
+        background: $carousel-nav-background
+        display: flex
+        justify-content: center
+        align-items: center
+        color: $carousel-nav-color
+        z-index: 99
+        &:hover
+          cursor: pointer
+      .carousel-nav-right
+        left: auto
+        right: 0
+
+  // Sizes
+  .carousel
+    +carousel
+    @each $size in $carousel-sizes
+      &.is-#{$size}
+        .carousel-container
+          left: calc(-100% / #{$size})
+          transform: translateX(calc(100% / #{$size}))
+          .carousel-item
+            padding: 1em
+            flex-basis: calc(100% / #{$size})
+
+
+  // Animation
+  .carousel,
+    &.carousel-animate-slide
+      &.carousel-animated
+        .carousel-container
+          transform: none
+          transition: transform $carousel-animation-speed $carousel-animation-method
+    &.carousel-animate-fade
+      .carousel-item
+        position: absolute
+        width: 100%
+        height: 100%
+        transition: opacity $carousel-animation-speed $carousel-animation-method
+        &.is-active
+          opacity: 1
+        &:not(.is-active)
+          opacity: 0
 </style>

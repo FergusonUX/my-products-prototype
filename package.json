@@ -1,16 +1,17 @@
 {
-  "name": "my-products-prototype",
+  "name": "ferg-my-products",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Matthew Evert <hello.mevert@gmail.com>",
+  "description": "Ferguson My Products Prototype",
+  "author": "Matthew Evert <matthew.evert@ferguson.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "node server.js",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "express": "^4.16.3",
     "vue": "^2.5.2",
     "vue-flatpickr-component": "^7.0.1",
     "vue-router": "^3.0.1"

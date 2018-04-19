@@ -366,6 +366,26 @@
     </div>
     <!-- /end modal -->
 
+    <section class="hero"
+             style="width:100%; height:100%; background:white; position:fixed; top:0; left:0;"
+             v-if="password != 'ferguson'"
+    >
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Ferguson
+          </h1>
+          <h2 class="subtitle">
+            My Products Prototype
+          </h2>
+          <p>Enter password to continue.</p>
+          <input class="input" style="width:400px;" type="text" name="" value="" v-model="password">
+        </div>
+      </div>
+    </section>
+
+
+
 
   </div>
 </template>
@@ -444,7 +464,10 @@ export default {
       selectedProductObj: {},
 
       isComponentModalActive: false,
-      eventBus: new Vue()
+      eventBus: new Vue(),
+
+      showPasswordOverlay: true,
+      password: ''
     }
   },
   components: {

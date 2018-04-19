@@ -98,6 +98,7 @@
 
           <hr>
 
+          <!-- ========= My List ========= -->
           <b-collapse class="panel" :open.sync="collapseSectionTwoIsOpen" animation="fade">
             <div slot="trigger">
               <p class="title is-size-5">
@@ -110,6 +111,8 @@
             </div>
             <br>
             <ul>
+
+              <!-- multi-select: list name -->
               <li>List Name
                 <multi-select
                              :options="lists"
@@ -118,26 +121,51 @@
                              @select="onSelectListID">
                 </multi-select>
               </li><br>
+
+              <!-- checkbox: shared -->
               <li>
-                <label class="checkbox">
-                  <input type="checkbox" v-model="fpListsShared">
-                    &nbsp; Shared With Me
-                </label>
+                <div class="field">
+                  <!-- <b-checkbox v-model="fpListsShared">
+                    <span class="icon has-text-grey-light" style="position:relative; top:3px;">
+                      <i class="fas fa-user-plus"></i>
+                    </span>
+                    <span style="position:relative; top:-3px;">Shared With Me</span>
+                  </b-checkbox> -->
+                  <label class="checkbox">
+                    <input type="checkbox" v-model="fpListsShared">
+                    <span class="icon has-text-grey-light" style="position:relative; top:5px;">
+                      <i class="fas fa-user-plus"></i>
+                    </span>
+                    Shared With Me
+                  </label>
+                </div>
               </li>
+
+              <!-- checkbox: favorite -->
               <li>
-                <label class="checkbox">
-                  <input type="checkbox" v-model="fpFavorite">
-                    <span class="icon">
+                <div class="field">
+                  <!-- <b-checkbox v-model="fpFavorite">
+                    <span class="icon has-text-warning" style="position:relative; top:3px;">
                       <i class="fas fa-star"></i>
-                    </span>&nbsp; Favorite
-                </label>
+                    </span>
+                    <span style="position:relative; top:-3px;">Favorite</span>
+                  </b-checkbox> -->
+                  <label class="checkbox">
+                    <input type="checkbox" v-model="fpFavorite">
+                    <span class="icon has-text-warning" style="position:relative; top:5px;">
+                      <i class="fas fa-star"></i>
+                    </span>
+                    Favorite
+                  </label>
+                </div>
               </li>
-              <!-- <li>Job Name</li> -->
+
             </ul>
           </b-collapse>
 
           <hr>
 
+          <!-- ========= Categories ========= -->
           <b-collapse class="panel" :open.sync="collapseSectionThreeIsOpen" animation="fade">
             <div slot="trigger">
               <p class="title is-size-5">
@@ -151,6 +179,9 @@
             <br>
             <ul>
               <li v-for="cat in categories" v-bind:key="cat.name">
+                <!-- <b-checkbox v-model="fpCategories" :native-value="cat.name">
+                  <span style="position:relative; top:-3px;">{{cat.name}} ({{cat.count}})</span>
+                </b-checkbox> -->
                 <label class="checkbox">
                   <input type="checkbox" v-model="fpCategories" :value="cat.name">
                     &nbsp; {{cat.name}} ({{cat.count}})
@@ -161,12 +192,13 @@
 
           <hr>
 
+          <!-- ========= Brands ========= -->
           <b-collapse class="panel" :open.sync="collapseSectionFourIsOpen" animation="fade">
             <div slot="trigger">
               <p class="title is-size-5">
                 Brand
                 <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
-                  <span v-if="collapseSectionThreeIsOpen">-</span>
+                  <span v-if="collapseSectionFourIsOpen">-</span>
                   <span v-else>+</span>
                 </span>
               </p>
@@ -174,6 +206,11 @@
             <br>
             <ul>
               <li v-for="brand in brands" v-bind:key="brand.name">
+                <!-- <div class="field">
+                  <b-checkbox v-model="fpBrands" :native-value="brand.name">
+                    <span>{{brand.name}} ({{brand.count}})</span>
+                  </b-checkbox>
+                </div> -->
                 <label class="checkbox">
                   <input type="checkbox" v-model="fpBrands" :value="brand.name">
                     &nbsp; {{brand.name}} ({{brand.count}})
@@ -367,8 +404,8 @@
     <!-- /end modal -->
 
     <section class="hero"
-             style="width:100%; height:100%; background:gray; position:fixed; top:0; left:0;"
-             v-if="password != 'ferguson'"
+             style="width:100%; height:100%; background:white; position:fixed; top:0; left:0;"
+             v-if="password !== 'ferguson' && showPasswordOverlay"
     >
       <div class="hero-body">
         <div class="container">

@@ -7,11 +7,12 @@
                 <img class="image" v-bind:src="selectedProd.image" alt="">
               </div>
               <div class="column">
-                <p class="is-pulled-right">
+                <!-- <p class="is-pulled-right">
                   <span class="icon has-text-grey">
                     <i class="fas fa-print"></i>
                   </span>
-                </p>
+                </p> -->
+                <button class="button is-pulled-right" type="button" @click="$parent.close()">Close</button>
                 <p class="has-text-weight-bold product-list-item-title is-size-5">{{selectedProd.name}}</p>
                 <p class="">{{selectedProd.code}}</p>
                 <p class="is-size-7">{{selectedProd.brand}}</p>
@@ -21,7 +22,8 @@
                   This product is part of a family of {{getProductsByFamilyID(selectedProd.family).length}} products. <a href="#" class="inactive-link">View the entire family</a>
                 </p>
                 <br>
-                <button class="button is-primary" type="button" name="button">Add to Cart</button>
+
+
               </div>
 
             </div>
@@ -211,9 +213,30 @@
 
 
           <footer class="product-modal-foot">
-              <button class="button" :disabled="!canPrev" @click="prevProduct()">Previous</button>
-              <button class="button" :disabled="!canNext" @click="nextProduct()">Next</button>
-              <button class="button is-pulled-right" type="button" @click="$parent.close()">Close</button>
+
+            <button class="button" type="button" href="#">
+              <span class="icon has-text-grey">
+                <i class="fas fa-print"></i>
+              </span>
+              &nbsp; Print
+            </button>
+            <div class="field is-grouped is-pulled-right">
+              <div class="control">
+                <input class="input" type="text" value="1" style="width:40px;">
+              </div>
+              <div class="control">
+                <a class="button is-primary">
+                  <span class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                  &nbsp; Add to Cart
+                </a>
+              </div>
+            </div>
+            <!-- <button class="button is-primary" type="button" name="button">Add to Cart</button> -->
+              <!-- <button class="button" :disabled="!canPrev" @click="prevProduct()">Previous</button>
+              <button class="button" :disabled="!canNext" @click="nextProduct()">Next</button> -->
+
           </footer>
       </div>
   </div>
@@ -286,7 +309,7 @@ export default {
       let index = _.indexOf(map, listName)
       let map2 = _.map(this.lists[index]['products'], 'code')
       let index2 = _.indexOf(map2, prodID)
-      console.log('listQuantityIncrement')
+      // console.log('listQuantityIncrement')
       this.lists[index]['products'][index2]['quantity']++
     },
     listQuantityDecrement: function (listName, prodID) {
@@ -294,7 +317,7 @@ export default {
       let index = _.indexOf(map, listName)
       let map2 = _.map(this.lists[index]['products'], 'code')
       let index2 = _.indexOf(map2, prodID)
-      console.log('listQuantityIncrement')
+      // console.log('listQuantityDecrement')
       this.lists[index]['products'][index2]['quantity']--
     },
     getOrdersByProductID: function (prodID) {

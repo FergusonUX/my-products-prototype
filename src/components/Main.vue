@@ -57,6 +57,14 @@
                              @select="onSelectJob">
                 </multi-select>
               </li><br>
+              <li>Ordered By
+                <multi-select
+                             :options="orderers"
+                             :selected-options="fpOrderers"
+                             placeholder="select person"
+                             @select="onSelectOrderer">
+                </multi-select>
+              </li><br>
               <li>Account
                 <multi-select
                              :options="accounts"
@@ -221,6 +229,20 @@
 
           <br>
 
+          <div class="field is-grouped is-grouped-centered">
+            <p class="control">
+              <a class="button"
+                 v-bind:class="[
+                  { 'is-primary': canClearFilters() }
+                 ]"
+                 :disabled="!canClearFilters()"
+                 @click="clearAllFilters()"
+              >
+                Clear All Filters
+              </a>
+            </p>
+          </div>
+
         </div>
         <!-- /end left rail -->
 
@@ -331,6 +353,13 @@
                    <br>
                    <p class="has-text-weight-bold product-list-item-title">{{item.name}}</p>
                    <p class="is-size-7">{{item.code}}</p>
+
+                   <div v-if="fpOrderers.length">
+                     <br>
+                     <p class="is-size-7">
+                       <span class="">Ordered by {{fpOrderers[0].value}}</span>
+                     </p>
+                   </div>
 
                    <div v-if="fpOrderIDs.length">
                      <br>
@@ -480,6 +509,9 @@ export default {
       jobs: [],
       fpJobs: [],
 
+      orderers: [],
+      fpOrderers: [],
+
       pos: [],
       fpPOs: [],
 
@@ -563,6 +595,13 @@ export default {
         })
       }
 
+      if (this.fpOrderers.length) {
+        let func = this.prodIsInOrderOrdererFilter
+        fp = _.filter(fp, function (product) {
+          return func(product.code)
+        })
+      }
+
       if (this.fpAccounts.length) {
         let func = this.accountFilter
         fp = _.filter(fp, function (product) {
@@ -618,6 +657,50 @@ export default {
     }
   },
   methods: {
+    canClearFilters: function () {
+      var bool = false
+      // console.log('canClearFilters')
+      if (this.fpListIDs.length > 0) {
+        bool = true
+      } else if (this.fpListsShared) {
+        bool = true
+      } else if (this.fpFavorite) {
+        bool = true
+      } else if (this.fpBrands.length > 0) {
+        bool = true
+      } else if (this.fpCategories.length > 0) {
+        bool = true
+      } else if (this.fpOrderIDs.length > 0) {
+        bool = true
+      } else if (this.fpQuoteIDs.length > 0) {
+        bool = true
+      } else if (this.fpJobs.length > 0) {
+        bool = true
+      } else if (this.fpOrderers.length > 0) {
+        bool = true
+      } else if (this.fpPOs.length > 0) {
+        bool = true
+      } else if (this.fpAccounts.length > 0) {
+        bool = true
+      } else if (this.fpSearchTerm) {
+        bool = true
+      }
+      return bool
+    },
+    clearAllFilters: function () {
+      this.fpListIDs = []
+      this.fpListsShared = false
+      this.fpFavorite = false
+      this.fpBrands = []
+      this.fpCategories = []
+      this.fpOrderIDs = []
+      this.fpQuoteIDs = []
+      this.fpJobs = []
+      this.fpOrderers = []
+      this.fpPOs = []
+      this.fpAccounts = []
+      this.fpSearchTerm = ''
+    },
     toggleFavorite: function (item) {
       console.log(item.code)
     },
@@ -722,6 +805,15 @@ export default {
 
       return listOfLists
     },
+    productOrdererFilterMethod: function (orderer) {
+      let listOfOrderers = []
+      for (var order in this.orders) {
+        if (this.orders[order]['ordered-by'] && this.orders[order]['ordered-by'] === orderer) {
+          listOfOrderers.push(this.orders[order])
+        }
+      }
+      return listOfOrderers
+    },
     brandFilter: function (prodID) {
       let index = _.indexOf(_.map(this.products, 'code'), prodID)
       // console.log('index', index)
@@ -804,6 +896,22 @@ export default {
       })
       return bool
     },
+    prodIsInOrderOrdererFilter: function (prodID) {
+      var bool = false
+      var ordersThatIncludeFilteredOrderer = []
+      var orderers = this.fpOrderers
+      _.forEach(this.orders, function (order) {
+        if (_.includes(_.map(orderers, 'value'), order['ordered-by'])) {
+          ordersThatIncludeFilteredOrderer.push(order)
+        }
+      })
+      _.forEach(ordersThatIncludeFilteredOrderer, function (order) {
+        if (_.includes(_.map(order['products-ordered'], 'code'), prodID)) {
+          bool = true
+        }
+      })
+      return bool
+    },
     prodIsInOrderJobFilter: function (prodID) {
       var bool = false
       var ordersThatIncludeFilteredJob = []
@@ -874,6 +982,11 @@ export default {
     },
     onSelectQuoteID (items, lastSelectItem) {
       this.fpQuoteIDs = items
+    },
+    onSelectOrderer (items, lastSelectItem) {
+      this.fpOrderers = items
+      // console.log('fpJobs: ' + JSON.stringify(this.fpJobs))
+      // this.lastSelectedOrderID = lastSelectItem
     },
     onSelectJob (items, lastSelectItem) {
       this.fpJobs = items
@@ -995,6 +1108,12 @@ export default {
         // console.log('yeah! ' + this.orders[order]['account'])
         this.accounts.push({ text: this.orders[order]['account'], value: this.orders[order]['account'] })
       }
+
+      if (this.orders[order]['ordered-by'] && _.indexOf(_.map(this.orderers, 'value'), this.orders[order]['ordered-by']) === -1) {
+        // console.log('yeah! ' + this.orders[order]['account'])
+        this.orderers.push({ text: this.orders[order]['ordered-by'], value: this.orders[order]['ordered-by'] })
+      }
+
 
       if (this.orders[order]['purchase-order-number'] && _.indexOf(this.pos, this.orders[order]['purchase-order-number']) === -1) {
         this.pos.push({ text: this.orders[order]['purchase-order-number'], value: this.orders[order]['purchase-order-number'] })

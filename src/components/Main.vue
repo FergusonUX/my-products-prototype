@@ -367,7 +367,7 @@
     <!-- /end modal -->
 
     <section class="hero"
-             style="width:100%; height:100%; background:white; position:fixed; top:0; left:0;"
+             style="width:100%; height:100%; background:gray; position:fixed; top:0; left:0;"
              v-if="password != 'ferguson'"
     >
       <div class="hero-body">

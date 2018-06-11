@@ -267,6 +267,8 @@
                   <p class="label" style="display:inline-block; position:relative; top:5px;">Sort &nbsp;</p>
                   <div class="select">
                     <select v-model="sortSelection">
+                      <option>Recently Purchased</option>
+                      <option>Order Frequency</option>
                       <option>Name: A-Z</option>
                       <option>Name: Z-A</option>
                     </select>
@@ -385,11 +387,32 @@
                      </p>
                    </div>
 
-                 </div>
+                  <div v-if="sortSelection === 'Recently Purchased'">
+                    <br>
+                    <p class="is-size-7">
+                      <span v-if="item['recent-order']">
+                        Last order: {{item['recent-order']}}
+                      </span>
+                      <span v-else>
+                        Never ordered
+                      </span>
+                    </p>
+                  </div>
 
-               </div>
-             </div>
-           </div>
+                  <div v-if="sortSelection === 'Order Frequency'">
+                    <br>
+                    <p class="is-size-7">
+                      <span>
+                        Ordered {{item.orders.length}} times.
+                      </span>
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
 
 
 
@@ -425,7 +448,7 @@
     <!-- /end modal -->
 
     <section class="hero"
-             style="width:100%; height:100%; background:white; position:fixed; top:0; left:0;"
+             style="width:100%; height:100%; background:white; position:fixed; top:0; left:0; z-index:999"
              v-if="password !== 'ferguson' && showPasswordOverlay"
     >
       <div class="hero-body">
@@ -527,10 +550,10 @@ export default {
       isComponentModalActive: false,
       eventBus: new Vue(),
 
-      showPasswordOverlay: false,
+      showPasswordOverlay: true,
       password: '',
 
-      sortSelection: 'Name: A-Z'
+      sortSelection: ''
     }
   },
   components: {
@@ -656,6 +679,15 @@ export default {
       }
       if (this.sortSelection === 'Name: Z-A') {
         sp = _.orderBy(sp, ['name'], ['desc'])
+      }
+      if (this.sortSelection === 'Recently Purchased') {
+        sp = _.orderBy(sp, ['recent-order'], ['desc'])
+      }
+      if (this.sortSelection === 'Order Frequency') {
+        // sp = _.orderBy(sp, ['orders'], ['desc'])
+        sp = _.orderBy(sp, ['orders', function (o) {
+          return o.length
+        }], ['desc'])
       }
       return sp
     }
@@ -1088,6 +1120,17 @@ export default {
           this.categories[index].count++
         }
       }
+
+      // console.log(this.products[product].code, this.productOrderFilterMethod(this.products[product].code).length)
+      let orders = this.productOrderFilterMethod(this.products[product].code)
+      this.products[product].orders = orders
+      if (orders.length > 0) {
+        // console.log(orders.length + ' - Most recent order is: ' + orders[0]['order-number'])
+        this.products[product]['recent-order'] = orders[0]['order-number']
+      } else {
+        this.products[product]['recent-order'] = ''
+      }
+      this.sortSelection = 'Recently Purchased'
     }
 
     /*

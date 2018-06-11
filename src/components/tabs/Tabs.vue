@@ -178,7 +178,7 @@ export default {
 }
 .vue-bulma-tabs .tab-content {
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   /* margin: 10px 30px; */
   flex: 1 1;

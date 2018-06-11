@@ -11,10 +11,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@ferguson-enterprises/fds-css": "^1.0.6",
+    "buefy": "^0.6.5",
     "express": "^4.16.3",
+    "moment": "^2.22.1",
+    "node-sass": "^4.8.3",
     "vue": "^2.5.2",
     "vue-flatpickr-component": "^7.0.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-search-select": "^2.6.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

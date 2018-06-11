@@ -5,6 +5,7 @@
       <div class="container">
         <br>
         <img src="../assets/logo.png" alt="">
+        <span style="color: white;">My Products Prototype</span>
         <br><br>
       </div>
     </div>
@@ -16,7 +17,7 @@
         <!-- left rail -->
         <div class="column is-3">
           <br><br>
-          <h2 class="subtitle is-size-4">Filter Products</h2>
+          <h2 class="subtitle is-size-4">Product Filters</h2>
           <p>Keyword Search</p>
           <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="">
           <br><br><br>
@@ -250,39 +251,30 @@
         <div class="column">
           <br><br>
 
-          <div class="content">
-            <h2 class="title" style="display: inline-block;">My Products</h2>
-            &nbsp;
-            <button @click="collapseHelpIsOpen = !collapseHelpIsOpen"
-                    v-if="!collapseHelpIsOpen"
-                    class="button is-small">
-                <span class="icon has-text-grey">
-                  <i class="fas fa-question-circle"></i>
-                </span>
-            </button>
-            <b-collapse class="panel" :open.sync="collapseHelpIsOpen" animation="fade">
-              <p class="is-size-4 has-text-weight-light">My Products is a dynamically generated list of items you have ordered, quoted, or added to your My Lists - all in one place!</p>
-              <p class="is-size-4 has-text-weight-light">Your list or products may be big, so we have added some powerful filters to help you find narrow your search. </p>
-              <p>Additionally, you can click on each product to get information for things like:</p>
-              <ul>
-                <li>Product summary</li>
-                <li>Order &amp; Quote History</li>
-                <li>Product specifications, warranties, etc.</li>
-                <li>Product availability, and more!</li>
-              </ul>
-            </b-collapse>
-            <button @click="collapseHelpIsOpen = !collapseHelpIsOpen"
-                    v-if="collapseHelpIsOpen"
-                    class="button"
-                    v-bind:class="[
-                      { 'is-primary': collapseHelpIsOpen },
-                      { 'is-pulled-right': !collapseHelpIsOpen },
-                      { 'is-small': !collapseHelpIsOpen }
-                    ]">
-              <span>Great, let's get started!</span>
-            </button>
+          <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+              <div class="level-item">
+                <h2 class="title" style="display: inline-block;">My Products</h2>
+                &nbsp;
+              </div>
+            </div>
 
-          </div>
+            <!-- Right side -->
+            <div class="level-right">
+              <div class="level-item">
+                <div class="field">
+                  <p class="label" style="display:inline-block; position:relative; top:5px;">Sort &nbsp;</p>
+                  <div class="select">
+                    <select v-model="sortSelection">
+                      <option>Name: A-Z</option>
+                      <option>Name: Z-A</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
 
 
           <!-- <div class="">
@@ -321,7 +313,7 @@
                                 { 'is-one-quarter-desktop': hideRightRail },
                                 { 'is-one-fifth-widescreen': hideRightRail }
                               ]"
-                v-for="(item) in filteredProducts"
+                v-for="(item) in sortedProducts"
                 v-bind:key="item.code"
              >
                 <!-- @click="showProductDetail(item.code)" -->
@@ -471,7 +463,7 @@ import Buefy from 'buefy'
 import ProductModal from '@/components/ProductModal'
 import Test from '@/components/Test'
 // import 'bulma-carousel'
-import '../../node_modules/bulma-carousel/dist/bulma-carousel.js'
+// import '../../node_modules/bulma-carousel/dist/bulma-carousel.js'
 
 export default {
   name: 'Main',
@@ -535,8 +527,10 @@ export default {
       isComponentModalActive: false,
       eventBus: new Vue(),
 
-      showPasswordOverlay: true,
-      password: ''
+      showPasswordOverlay: false,
+      password: '',
+
+      sortSelection: 'Name: A-Z'
     }
   },
   components: {
@@ -654,6 +648,16 @@ export default {
       }
 
       return fp
+    },
+    sortedProducts: function () {
+      var sp = this.filteredProducts
+      if (this.sortSelection === 'Name: A-Z') {
+        sp = _.orderBy(sp, ['name'], ['asc'])
+      }
+      if (this.sortSelection === 'Name: Z-A') {
+        sp = _.orderBy(sp, ['name'], ['desc'])
+      }
+      return sp
     }
   },
   methods: {
@@ -1164,6 +1168,10 @@ export default {
     @extend .card
     line-height: 1.25
     color: #000000
+    cursor: pointer
+  .product-list-item:hover
+    box-shadow: 0 2px 3px rgba($color-grey-light, 1), 0 0 0 1px rgba($color-grey-light, 1)
+    background: $color-white-bis
   .product-list-item-content
     @extend .card-content
     padding: 16px 12px 12px 12px

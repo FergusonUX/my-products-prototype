@@ -1,6 +1,160 @@
 {
   "products": [
     {
+      "name": "EzH2O® 55-1/16 in. 8 gph Bottle Filling Station with Integral Refrigerated Fountain in Stainless Steel",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4707192",
+      "code": "ELZWSLRPBM28K",
+      "categories": "Water Coolers",
+      "brand": "Elkay"
+    },
+    {
+      "name": "10.1 oz 100% Silicone Caulk Clear",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=2125708",
+      "code": "PFC500CLR",
+      "categories": "Plumbers Caulk",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "2 oz. Medium Lampwick Ball",
+      "image": "https://www.ferguson.com/dar/default_STANDARD.png",
+      "code": "W1906020",
+      "categories": "Sealants",
+      "brand": "Wal-Rich"
+    },
+    {
+      "name": "1-1/2 in. Plastic Slip-Joint Washer",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=278356",
+      "code": "PFSJP3",
+      "categories": "Plumbing Nuts, Washers",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "1-1/2 in. Zinc Slip Nut Polished Chrome",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=272548",
+      "code": "PFSNJ",
+      "categories": "Plumbing Nuts, Washers",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "1-1/4 x 6 in. 17 ga Grid Drain Chrome Plated",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=284547",
+      "code": "PFGD100",
+      "categories": "Lavatory Sink Parts & Accessories",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "12 in. Slip-Joint Elbow with Nut in in Rough Brass",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=1020554",
+      "code": "KEE903LPC",
+      "categories": "Tailpieces & Tubes",
+      "brand": "Keeney"
+    },
+    {
+      "name": "1-1/4 in. 22 Gauge Double Offset Slip-Joint Extension Tube",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4055924",
+      "code": "PFETB800",
+      "categories": "Tailpieces & Tubes",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "3/8 x 1/2 in. Compression x FIP Stainless Steel Sink Connector 20 In.",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=2405309",
+      "code": "PFX146324",
+      "categories": "Flexible Water Connectors",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "3/8 in. x 50 ft. Soft Refrigeration Tube",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=29445",
+      "code": "RTC",
+      "categories": "Refrigeration Tubing",
+      "brand": "Mueller Industries"
+    },
+    {
+      "name": "Nemesis™ Safety Glasses With Cord In Black/Smoke",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3196343",
+      "code": "J25688",
+      "categories": "Safety Glasses",
+      "brand": "Jackson Safety"
+    },
+    {
+      "name": "1.5V AAA Alkaline Battery 8-Pack",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4631236",
+      "code": "DMN2400B8Z",
+      "categories": "Batteries",
+      "brand": "Duracell"
+    },
+    {
+      "name": "Plastic Bolt Cap in White",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=345550",
+      "code": "PFBC43",
+      "categories": "Toilet & Urinal Parts",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "3/4 x 1/2 in. FTG x Copper Reducer",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5642",
+      "code": "CFRFD",
+      "categories": "Copper Reducers",
+      "brand": ""
+    },
+    {
+      "name": "2 in. Threaded 150# Black Malleable Iron R&L Coupling",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=921708",
+      "code": "BCRLK",
+      "categories": "Malleable Couplings",
+      "brand": ""
+    },
+    {
+      "name": "2 x 4 in. NPT Schedule 40 Right and Left Black Nipple",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=838017",
+      "code": "BRLNKP",
+      "categories": "Carbon Steel Nipples",
+      "brand": ""
+    },
+    {
+      "name": "FireLock® Style 006 2-1/2 in. Painted Cap",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=433302",
+      "code": "VF024006P00",
+      "categories": "Sprinkler Caps",
+      "brand": "Victaulic"
+    },
+    {
+      "name": "36 x 36 x 1/8 in. Remote Reader with Sheet Package Gasket",
+      "image": "https://www.ferguson.com/dar/default_STANDARD.png",
+      "code": "DRRSPG3636A",
+      "categories": "Gaskets",
+      "brand": "Draco Mechanical Supply"
+    },
+    {
+      "name": "2-1/2 x 2-1/2 x 2 in. Painted Threaded Mechanical Gasket Tee",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=1790560",
+      "code": "T7302520EP",
+      "categories": "Mechanical Tees",
+      "brand": "Tyco"
+    },
+    {
+      "name": "6-Pieces in 1 Screwdriver",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3383084",
+      "code": "RAP16012",
+      "categories": "Screwdrivers",
+      "brand": "Raptor"
+    },
+    {
+      "name": "3/8 x 3/8 in. Compression Stainless Steel Sink Connector 12 In.",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3866355",
+      "code": "PFX146342",
+      "categories": "Flexible Water Connectors",
+      "brand": "ProFlo"
+    },
+    {
+      "name": "3/8 in. OD Compression Domestic Brass Tee",
+      "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5050902",
+      "code": "PFXCTCN",
+      "categories": "Brass Compression Tees",
+      "brand": "ProFlo"
+    },
+    {
       "name": "Gripper 1-1/2 in. Gripper Mechanical Plug",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=41869",
       "code": "C270210",

@@ -1,6 +1,16 @@
 {
   "quotes": [
     {
+      "quote-number": "B069811",
+      "date-created": 1528811973,
+      "date-expiration": 1528811982,
+      "job-name": "570 LEX 11&12 FLR",
+      "account": "502411",
+      "products-quoted": [
+        { "code": "ELZWSLRPBM28K", "quantity": 2, "unit-price": 4008.00 }
+      ]
+    },
+    {
       "quote-number": "B930695",
       "date-created": 1523363520,
       "date-expiration": 1544443200,

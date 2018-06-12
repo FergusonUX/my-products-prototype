@@ -387,11 +387,13 @@
                      </p>
                    </div>
 
-                  <div v-if="sortSelection === 'Recently Purchased'">
+                  <div v-if="sortSelection === 'Recently Purchased' && !fpOrderIDs.length">
                     <br>
                     <p class="is-size-7">
                       <span v-if="item['recent-order']">
-                        Last order: {{item['recent-order']}}
+                        Purchased {{formatDate(getOrderById(item['recent-order'])['date-ordered'], 'MMM Do')}}
+                        <br>
+                        Order #{{item['recent-order']}}
                       </span>
                       <span v-else>
                         Never ordered
@@ -550,7 +552,7 @@ export default {
       isComponentModalActive: false,
       eventBus: new Vue(),
 
-      showPasswordOverlay: true,
+      showPasswordOverlay: false,
       password: '',
 
       sortSelection: ''
@@ -693,6 +695,11 @@ export default {
     }
   },
   methods: {
+    getOrderById: function (orderID) {
+      var order = {}
+      order = _.find(this.orders, {'order-number': orderID})
+      return order
+    },
     canClearFilters: function () {
       var bool = false
       // console.log('canClearFilters')

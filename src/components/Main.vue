@@ -220,7 +220,7 @@
                     <span>{{brand.name}} ({{brand.count}})</span>
                   </b-checkbox>
                 </div> -->
-                <label class="checkbox">
+                <label class="checkbox is-small">
                   <input type="checkbox" v-model="fpBrands" :value="brand.name">
                     &nbsp; {{brand.name}} ({{brand.count}})
                 </label>
@@ -269,6 +269,8 @@
                     <select v-model="sortSelection">
                       <option>Recently Purchased</option>
                       <option>Order Frequency</option>
+                      <option>Price: Low-High</option>
+                      <option>Price: High-Low</option>
                       <option>Name: A-Z</option>
                       <option>Name: Z-A</option>
                     </select>
@@ -277,6 +279,8 @@
               </div>
             </div>
           </nav>
+          <!-- <p class="is-size-5">Below are the products you have ordered, quoted or exist in your lists.</p>
+          <br><br> -->
 
 
           <!-- <div class="">
@@ -409,6 +413,18 @@
                       </span>
                     </p>
                   </div>
+
+                  <div v-if="sortSelection === 'Price: Low-High' || sortSelection === 'Price: High-Low'">
+                    <br>
+                    <p class="is-size-6 has-text-weight-bold">
+                      <span>
+                        ${{item.price}}
+                      </span>
+                    </p>
+                  </div>
+
+                  <br>
+                  <button class="button is-primary is-fullwidth is-small" >Add to Cart</button>
 
                 </div>
 
@@ -552,7 +568,7 @@ export default {
       isComponentModalActive: false,
       eventBus: new Vue(),
 
-      showPasswordOverlay: false,
+      showPasswordOverlay: true,
       password: '',
 
       sortSelection: ''
@@ -681,6 +697,12 @@ export default {
       }
       if (this.sortSelection === 'Name: Z-A') {
         sp = _.orderBy(sp, ['name'], ['desc'])
+      }
+      if (this.sortSelection === 'Price: Low-High') {
+        sp = _.orderBy(sp, ['price'], ['asc'])
+      }
+      if (this.sortSelection === 'Price: High-Low') {
+        sp = _.orderBy(sp, ['price'], ['desc'])
       }
       if (this.sortSelection === 'Recently Purchased') {
         sp = _.orderBy(sp, ['recent-order'], ['desc'])

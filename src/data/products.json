@@ -5,154 +5,198 @@
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4707192",
       "code": "ELZWSLRPBM28K",
       "categories": "Water Coolers",
-      "brand": "Elkay"
+      "brand": "Elkay",
+      "is-favorite": false,
+      "price": "4008.00"
     },
     {
       "name": "10.1 oz 100% Silicone Caulk Clear",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=2125708",
       "code": "PFC500CLR",
       "categories": "Plumbers Caulk",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": true,
+      "price": "4.77"
     },
     {
       "name": "2 oz. Medium Lampwick Ball",
       "image": "https://www.ferguson.com/dar/default_STANDARD.png",
       "code": "W1906020",
       "categories": "Sealants",
-      "brand": "Wal-Rich"
+      "brand": "Wal-Rich",
+      "is-favorite": false,
+      "price": "1.28"
     },
     {
       "name": "1-1/2 in. Plastic Slip-Joint Washer",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=278356",
       "code": "PFSJP3",
       "categories": "Plumbing Nuts, Washers",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "0.15"
     },
     {
       "name": "1-1/2 in. Zinc Slip Nut Polished Chrome",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=272548",
       "code": "PFSNJ",
       "categories": "Plumbing Nuts, Washers",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "0.62"
     },
     {
       "name": "1-1/4 x 6 in. 17 ga Grid Drain Chrome Plated",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=284547",
       "code": "PFGD100",
       "categories": "Lavatory Sink Parts & Accessories",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "10.25"
     },
     {
       "name": "12 in. Slip-Joint Elbow with Nut in in Rough Brass",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=1020554",
       "code": "KEE903LPC",
       "categories": "Tailpieces & Tubes",
-      "brand": "Keeney"
+      "brand": "Keeney",
+      "is-favorite": false,
+      "price": "7.70"
     },
     {
       "name": "1-1/4 in. 22 Gauge Double Offset Slip-Joint Extension Tube",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4055924",
       "code": "PFETB800",
       "categories": "Tailpieces & Tubes",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "6.99"
     },
     {
       "name": "3/8 x 1/2 in. Compression x FIP Stainless Steel Sink Connector 20 In.",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=2405309",
       "code": "PFX146324",
       "categories": "Flexible Water Connectors",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "42.00"
     },
     {
       "name": "3/8 in. x 50 ft. Soft Refrigeration Tube",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=29445",
       "code": "RTC",
       "categories": "Refrigeration Tubing",
-      "brand": "Mueller Industries"
+      "brand": "Mueller Industries",
+      "is-favorite": false,
+      "price": "47.72"
     },
     {
       "name": "Nemesis™ Safety Glasses With Cord In Black/Smoke",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3196343",
       "code": "J25688",
       "categories": "Safety Glasses",
-      "brand": "Jackson Safety"
+      "brand": "Jackson Safety",
+      "is-favorite": true,
+      "price": "5.79"
     },
     {
       "name": "1.5V AAA Alkaline Battery 8-Pack",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=4631236",
       "code": "DMN2400B8Z",
       "categories": "Batteries",
-      "brand": "Duracell"
+      "brand": "Duracell",
+      "is-favorite": true,
+      "price": "12.24"
     },
     {
       "name": "Plastic Bolt Cap in White",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=345550",
       "code": "PFBC43",
       "categories": "Toilet & Urinal Parts",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "4.20"
     },
     {
       "name": "3/4 x 1/2 in. FTG x Copper Reducer",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5642",
       "code": "CFRFD",
       "categories": "Copper Reducers",
-      "brand": ""
+      "brand": "",
+      "is-favorite": false,
+      "price": "9.48"
     },
     {
       "name": "2 in. Threaded 150# Black Malleable Iron R&L Coupling",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=921708",
       "code": "BCRLK",
       "categories": "Malleable Couplings",
-      "brand": ""
+      "brand": "",
+      "is-favorite": false,
+      "price": "17.05"
     },
     {
       "name": "2 x 4 in. NPT Schedule 40 Right and Left Black Nipple",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=838017",
       "code": "BRLNKP",
       "categories": "Carbon Steel Nipples",
-      "brand": ""
+      "brand": "",
+      "is-favorite": false,
+      "price": "13.88"
     },
     {
       "name": "FireLock® Style 006 2-1/2 in. Painted Cap",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=433302",
       "code": "VF024006P00",
       "categories": "Sprinkler Caps",
-      "brand": "Victaulic"
+      "brand": "Victaulic",
+      "is-favorite": false,
+      "price": "6.77"
     },
     {
       "name": "36 x 36 x 1/8 in. Remote Reader with Sheet Package Gasket",
       "image": "https://www.ferguson.com/dar/default_STANDARD.png",
       "code": "DRRSPG3636A",
       "categories": "Gaskets",
-      "brand": "Draco Mechanical Supply"
+      "brand": "Draco Mechanical Supply",
+      "is-favorite": false,
+      "price": "26.50"
     },
     {
       "name": "2-1/2 x 2-1/2 x 2 in. Painted Threaded Mechanical Gasket Tee",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=1790560",
       "code": "T7302520EP",
       "categories": "Mechanical Tees",
-      "brand": "Tyco"
+      "brand": "Tyco",
+      "is-favorite": false,
+      "price": "22.23"
     },
     {
       "name": "6-Pieces in 1 Screwdriver",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3383084",
       "code": "RAP16012",
       "categories": "Screwdrivers",
-      "brand": "Raptor"
+      "brand": "Raptor",
+      "is-favorite": true,
+      "price": "5.99"
     },
     {
       "name": "3/8 x 3/8 in. Compression Stainless Steel Sink Connector 12 In.",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=3866355",
       "code": "PFX146342",
       "categories": "Flexible Water Connectors",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "2.59"
     },
     {
       "name": "3/8 in. OD Compression Domestic Brass Tee",
       "image": "https://api.ferguson.com/dar-step-service/Query?USE_TYPE=ATG_PRIMARY_STANDARD_IMAGE&PRODUCT_ID=5050902",
       "code": "PFXCTCN",
       "categories": "Brass Compression Tees",
-      "brand": "ProFlo"
+      "brand": "ProFlo",
+      "is-favorite": false,
+      "price": "4.11"
     },
     {
       "name": "Gripper 1-1/2 in. Gripper Mechanical Plug",
@@ -161,7 +205,8 @@
       "family": "C2702",
       "categories": "Test Plugs and Balls",
       "brand": "Cherne",
-      "is-favorite": true
+      "is-favorite": false,
+      "price": "3.16"
     },
     {
       "name": "Gripper 2 in. Gripper Mechanical Plug",
@@ -170,7 +215,8 @@
       "family": "C2702",
       "categories": "Test Plugs and Balls",
       "brand": "Cherne",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "3.63"
     },
     {
       "name": "Water-Tite 6 ft. Shower Pan Liner in Grey",
@@ -178,7 +224,8 @@
       "code": "I83450",
       "categories": "Shower Pan Liners",
       "brand": "IPS Corporation",
-      "is-favorite": true
+      "is-favorite": true,
+      "price": "26.73"
     },
     {
       "name": "2-3/10 in. Locking Tradesman Utility Knife",
@@ -186,7 +233,8 @@
       "code": "L10771FLK1",
       "categories": "Utility Knives",
       "brand": "Lenox",
-      "is-favorite": false
+      "is-favorite": true,
+      "price": "11.98"
     },
     {
       "name": "2 in. Bronze Double Check Backflow Preventer Assembly",
@@ -194,7 +242,8 @@
       "code": "WLF007M1QTK",
       "categories": "",
       "brand": "Watts",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "361.40"
     },
     {
       "name": "2 in. No-Hub Cast Iron 45 Degree 1/8 Bend",
@@ -202,7 +251,8 @@
       "code": "NH4K",
       "categories": "Cast Iron Bends",
       "brand": "",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "33.28"
     },
     {
       "name": "2 in. No-Hub Stainless Steel Coupling",
@@ -210,7 +260,8 @@
       "code": "DNHCK",
       "categories": "Stainless Steel Couplings",
       "brand": "",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "219.00"
     },
     {
       "name": "4 in. No-Hub Stainless Steel Coupling",
@@ -218,7 +269,8 @@
       "code": "DNHCP",
       "categories": "Stainless Steel Couplings",
       "brand": "",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "154.50"
     },
     {
       "name": "2 in. Plated Adjustable Standard Clevis Hanger in Silver",
@@ -226,7 +278,8 @@
       "code": "FNW7005Z0200",
       "categories": "Pipe & Conduit Hangers",
       "brand": "FNW",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "33.00"
     },
     {
       "name": "3 in. Plated Adjustable Standard Clevis Hanger in Silver",
@@ -234,7 +287,8 @@
       "code": "FNW7005Z0300",
       "categories": "Pipe & Conduit Hangers",
       "brand": "FNW",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "16.32"
     },
     {
       "name": "4 in. Plated Adjustable Standard Clevis Hanger in Silver",
@@ -242,7 +296,8 @@
       "code": "FNW7005Z0400",
       "categories": "Pipe & Conduit Hangers",
       "brand": "FNW",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "30.80"
     },
     {
       "name": "2 in. Zinc-Plated Riser Clamp",
@@ -250,7 +305,8 @@
       "code": "FNW7022Z0200",
       "categories": "Riser Clamp",
       "brand": "FNW",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "45.15"
     },
     {
       "name": "4 in. No-Hub Cast Iron Straight 1/8 Bend",
@@ -258,7 +314,8 @@
       "code": "TNH4P",
       "categories": "Cast Iron Bends",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "30.84"
     },
     {
       "name": "2 in. No-Hub Cast Iron 1/4 Degree Bend",
@@ -266,7 +323,8 @@
       "code": "TNH9K",
       "categories": "Cast Iron Bends",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "27.60"
     },
     {
       "name": "3 in. No-Hub Cast Iron 1/4 Degree Bend",
@@ -274,7 +332,8 @@
       "code": "TNH9M",
       "categories": "Cast Iron Bends",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "27.75"
     },
     {
       "name": "3 x 3 x 2 in. No-Hub Cast Iron Sanitary Tee",
@@ -282,7 +341,8 @@
       "code": "TNHSTMMK",
       "categories": "",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "17.76"
     },
     {
       "name": "4 x 4 x 2 in. No-Hub Cast Iron Sanitary Tee",
@@ -290,7 +350,8 @@
       "code": "TNHSTPPK",
       "categories": "Cast Iron Tees",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "39.10"
     },
     {
       "name": "4 x 4 x 2 in. No-Hub Reducing Cast Iron Wye",
@@ -298,7 +359,8 @@
       "code": "TNHYPPK",
       "categories": "Cast Iron Tees",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "29.92"
     },
     {
       "name": "2 in. x 10 ft. No-Hub Cast Iron Soil Pipe",
@@ -306,7 +368,8 @@
       "code": "TNHPK10",
       "categories": "Cast Iron Soil Pipe",
       "brand": "Tyler Pipe",
-      "is-favorite": false
+      "is-favorite": false,
+      "price": "397.20"
     }
   ]
 }

@@ -431,5 +431,5 @@ export default {
   .inactive-link
     color: purple
   .inactive-button
-    // background: purple
+    // background-color: purple
 </style>

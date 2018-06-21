@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #f5f5f5;">
 
     <div class="header">
       <div class="container">
@@ -15,18 +15,18 @@
       <div class="columns">
 
         <!-- left rail -->
-        <div class="column is-3">
-          <br><br>
-          <h2 class="subtitle is-size-4">Product Filters</h2>
-          <p>Keyword Search</p>
-          <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="">
+        <div class="column is-3" style="margin-top:56px;">
+          <!-- <br><br> -->
+          <h2 class="subtitle is-size-5">Filters</h2>
+          <!-- <p>Keyword Search</p> -->
+          <input class="input" type="text" name="" value="" v-model="fpSearchTerm" placeholder="keyword search">
           <br><br><br>
 
           <b-collapse class="panel" :open.sync="collapseSectionOneIsOpen" animation="fade">
             <div slot="trigger">
-              <p class="title is-size-5">
-                <span>Quotes &amp; Orders</span>
-                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+              <p class="title is-size-6">
+                <span>Orders & Quotes</span>
+                <span class="is-size-5" style="display:inline-block; float:right; position:relative; top:-4px;">
                   <span v-if="collapseSectionOneIsOpen">-</span>
                   <span v-else>+</span>
                 </span>
@@ -110,9 +110,9 @@
           <!-- ========= My List ========= -->
           <b-collapse class="panel" :open.sync="collapseSectionTwoIsOpen" animation="fade">
             <div slot="trigger">
-              <p class="title is-size-5">
+              <p class="title is-size-6">
                 My Lists
-                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                <span class="is-size-5" style="display:inline-block; float:right; position:relative; top:-4px;">
                   <span v-if="collapseSectionTwoIsOpen">-</span>
                   <span v-else>+</span>
                 </span>
@@ -177,16 +177,16 @@
           <!-- ========= Categories ========= -->
           <b-collapse class="panel" :open.sync="collapseSectionThreeIsOpen" animation="fade">
             <div slot="trigger">
-              <p class="title is-size-5">
+              <p class="title is-size-6">
                 Category
-                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                <span class="is-size-5" style="display:inline-block; float:right; position:relative; top:-4px;">
                   <span v-if="collapseSectionThreeIsOpen">-</span>
                   <span v-else>+</span>
                 </span>
               </p>
             </div>
             <br>
-            <ul>
+            <ul style="max-height:330px; overflow: scroll;">
               <li v-for="cat in categories" v-bind:key="cat.name">
                 <!-- <b-checkbox v-model="fpCategories" :native-value="cat.name">
                   <span style="position:relative; top:-3px;">{{cat.name}} ({{cat.count}})</span>
@@ -204,9 +204,9 @@
           <!-- ========= Brands ========= -->
           <b-collapse class="panel" :open.sync="collapseSectionFourIsOpen" animation="fade">
             <div slot="trigger">
-              <p class="title is-size-5">
+              <p class="title is-size-6">
                 Brand
-                <span class="is-size-4" style="display:inline-block; float:right; position:relative; top:-4px;">
+                <span class="is-size-5" style="display:inline-block; float:right; position:relative; top:-4px;">
                   <span v-if="collapseSectionFourIsOpen">-</span>
                   <span v-else>+</span>
                 </span>
@@ -230,7 +230,7 @@
 
           <br>
 
-          <div class="field is-grouped is-grouped-centered">
+          <div class="field is-grouped is-grouped-centered" v-if="canClearFilters()">
             <p class="control">
               <a class="button"
                  v-bind:class="[
@@ -248,8 +248,8 @@
         <!-- /end left rail -->
 
         <!-- main content -->
-        <div class="column">
-          <br><br>
+        <div class="column" style="background-color: white; margin-top: 12px; padding-top:48px;">
+          <!-- <br><br> -->
 
           <nav class="level">
             <!-- Left side -->
@@ -471,14 +471,43 @@
     >
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
-            Ferguson
-          </h1>
-          <h2 class="subtitle">
-            My Products Prototype
-          </h2>
-          <p>Enter password to continue.</p>
-          <input class="input" style="width:400px;" type="text" name="" value="" v-model="password">
+
+
+
+
+          <div class="columns">
+            <div class="column">
+              <img src="../assets/ferguson-logo.png">
+              <!-- <h1 class="title is-1">
+                Ferguson
+              </h1> -->
+              <h2 class="subtitle is-2">
+                My Products Prototype
+              </h2>
+              <p class="is-size-3 has-text-weight-light">
+                My Products is a catalog of products you have ordered, quoted, or added to My Lists
+              </p>
+              <br>
+              <div class="content">
+                <p>
+                  Thank you for testing this prototype, here are a couple things to remember:
+                </p>
+                <ul>
+                  <li>some buttons or links may not work</li>
+                  <li>the products you see are not yours, but example products</li>
+                </ul>
+              </div>
+              <p>Enter the password given by the moderator to continue.</p>
+              <input class="input" style="width:400px;" type="text" name="" value="" v-model="password">
+            </div>
+            <div class="column">
+              <figure class="image">
+                <img src="../assets/MyProducts.png">
+              </figure>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
@@ -1231,6 +1260,9 @@ export default {
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/initial-variables"
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/utilities/derived-variables"
   @import "../../node_modules/@ferguson-enterprises/fds-css/sass/components/card"
+
+  .inactive-button
+    background-color: purple
 
   .header
     background: $color-brand
